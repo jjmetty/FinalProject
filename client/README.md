@@ -1,5 +1,8 @@
 # client
 
+# directory 
+cd client
+
 # start project
 npm install
 
