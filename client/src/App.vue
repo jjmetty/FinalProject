@@ -1,4 +1,7 @@
 <template>
+
+
+  
   <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">
@@ -25,6 +28,18 @@
 </nav>
  
 
+<div class = "wrapper bg-light">
+  <div class = "sidebar bg-light">
+    <br>
+    <ul>
+      <li><a href="#">New Customer</a></li>
+      <li><a href="#">New Address</a></li>
+      <li><a href="#">New Job</a></li>
+      <li><a href="#">New Employee</a></li>
+      <li><a href="#">New Subcontractor</a></li>
+    </ul>
+  </div>
+</div>
 <!--
 <footer>
     <div class = "fixed-bottom">
@@ -39,6 +54,10 @@
     </div>
     </div>
 </footer>
+
+https://www.youtube.com/watch?v=YesSVqjcDts&t=3s
+5 minutes?
+
 -->
 
     <router-view/>
@@ -63,5 +82,26 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+.wrapper{
+  display: flex;
+  position: relative;
+}
+
+.wrapper .sidebar{
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  padding: 30px 0;
+
+}
+
+.wrapper .sidebar ul li{
+  padding: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid lightgray;
+}
+
+
 
 </style>
