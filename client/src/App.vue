@@ -30,13 +30,12 @@
 
 <div class = "wrapper bg-light">
   <div class = "sidebar bg-light">
-    <br>
     <ul>
-      <li><a href="#">New Customer</a></li>
-      <li><a href="#">New Address</a></li>
-      <li><a href="#">New Job</a></li>
-      <li><a href="#">New Employee</a></li>
-      <li><a href="#">New Subcontractor</a></li>
+      <li><a href="#"><i class="fas fa-plus"></i>New Customer</a></li>
+      <li><a href="#"><i class="fas fa-plus"></i>New Address</a></li>
+      <li><a href="#"><i class="fas fa-plus"></i>New Job</a></li>
+      <li><a href="#"><i class="fas fa-plus"></i>New Employee</a></li>
+      <li><a href="#"><i class="fas fa-plus"></i>New Subcontractor</a></li>
     </ul>
   </div>
 </div>
@@ -68,6 +67,13 @@ https://www.youtube.com/watch?v=YesSVqjcDts&t=3s
 </template>
 
 <style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  list-style:none;
+}
 
 .logo{
     padding-top:10px;
@@ -102,6 +108,23 @@ https://www.youtube.com/watch?v=YesSVqjcDts&t=3s
   border-top: 1px solid lightgray;
 }
 
+.wrapper .sidebar ul li a{
+  color: rgb(17, 126, 17);
+  display:block;
+}
+
+.wrapper .sidebar ul li a .fas{
+  width: 25px;
+
+}
+
+.wrapper .sidebar ul li:hover{
+  background: lightgray;
+}
+
+.wrapper .sidebar ul li:hover a{
+  color:white;
+}
 
 
 </style>
