@@ -1,6 +1,8 @@
 <template>
 
-
+<!--
+ create the pages and router links to them 
+  -->
   
   <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,10 +34,9 @@
   <div class = "sidebar bg-light">
     <ul>
       <li><router-link to="/newCustomer"><i class="fas fa-plus"></i>New Customer</router-link></li>
-      <li><a href="#"><i class="fas fa-plus"></i>New Address</a></li>
-      <li><a href="#"><i class="fas fa-plus"></i>New Job</a></li>
-      <li><a href="#"><i class="fas fa-plus"></i>New Employee</a></li>
-      <li><a href="#"><i class="fas fa-plus"></i>New Subcontractor</a></li>
+      <li><router-link to="/newJob"><i class="fas fa-plus"></i>New Job</router-link></li>
+      <li><router-link to="/newEmployee"><i class="fas fa-plus"></i>New Employee</router-link></li>
+      <li><router-link to="/newSub"><i class="fas fa-plus"></i>New Subcontractor</router-link></li>
     </ul>
   </div>
 </div>

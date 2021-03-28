@@ -23,6 +23,24 @@ const routes = [
     component: () => import ('../components/NewCustomerComponent')
   },
 
+  {
+    path: '/newEmployee',
+    name: 'newEmployee',
+    component: () => import ('../components/NewEmployeeComponent')
+  },
+
+  {
+    path: '/newSub',
+    name: 'newSub',
+    component: () => import ('../components/NewSubComponent')
+  },
+
+  {
+    path: '/newJob',
+    name: 'newJob',
+    component: () => import ('../components/NewJobComponent')
+  },
+
 
   
   //{
