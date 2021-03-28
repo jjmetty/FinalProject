@@ -31,7 +31,7 @@
 <div class = "wrapper bg-light">
   <div class = "sidebar bg-light">
     <ul>
-      <li><a href="#"><i class="fas fa-plus"></i>New Customer</a></li>
+      <li><router-link to="/newCustomer"><i class="fas fa-plus"></i>New Customer</router-link></li>
       <li><a href="#"><i class="fas fa-plus"></i>New Address</a></li>
       <li><a href="#"><i class="fas fa-plus"></i>New Job</a></li>
       <li><a href="#"><i class="fas fa-plus"></i>New Employee</a></li>
