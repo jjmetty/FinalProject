@@ -47,6 +47,12 @@ const routes = [
     component: () => import ('../components/CrewComponent')
   },
 
+  {
+    path: '/treeLocation',
+    name: 'treeLocation',
+    component: () => import ('../components/LocationComponent')
+  },
+
 
 
   
