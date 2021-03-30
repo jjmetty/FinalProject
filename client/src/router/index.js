@@ -41,6 +41,13 @@ const routes = [
     component: () => import ('../components/NewJobComponent')
   },
 
+  {
+    path: '/crewRecord',
+    name: 'crewRecord',
+    component: () => import ('../components/CrewComponent')
+  },
+
+
 
   
   //{
