@@ -14,7 +14,7 @@ async function getCustomers(){
     } 
 }
 
-//get one customer id
+//get one customer by customerID
 async function getCustomer(customerID){
     try{
         let pool = await sql.connect(config);
@@ -60,6 +60,34 @@ async function addCustomer(customer){
 }
 
 
+//update a customer 46:10
+async function updateCustomer(customerID, customer){
+    try {
+        let pool = await sql.connect(config);
+        let update = await pool.request()
+            .input ('customerID', sql.Int, customerID)
+            .input ('customerTypeID', sql.Int, customer.customerTypeID)
+            .input ('customerRelationshipID', sql.Int, customer.customerRelationshipID)
+            .input ('streetNum', sql.Int, customer.streetNum)
+            .input ('unit',sql.VarChar, customer.unit)
+            .input ('prefix',sql.VarChar, customer.prefix)
+            .input ('streetName',sql.VarChar, customer.streetName)
+            .input ('suffix',sql.VarChar, customer.suffix)
+            .input ('unitNum',sql.Int, customer.unitNum)
+            .input ('city',sql.VarChar, customer.city)
+            .input ('stateID',sql.Int, customer.stateID)
+            .input ('zip',sql.Int, customer.zip)
+            .input ('zip4',sql.Int, customer.zip4)
+            .input ('customerNote',sql.VarChar, customer.customerNote)
+            .query('UPDATE customer SET customerTypeID = @customerTypeID ,customerRelationshipID = @customerRelationshipID, streetNum = @streetNum ,unit = @unit ,prefix = @prefix ,streetName = @streetName ,suffix = @suffix ,unitNum = @unitNum,city = @city ,stateID = @stateID, zip = @zip ,zip4 = @zip4 ,customerNote = @customerNote WHERE (customerID = @customerID)');
+
+        return update.recordsets;
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 //delete customer
 async function deleteCustomer(customerID){
     try{
@@ -82,5 +110,7 @@ module.exports ={
     getCustomers : getCustomers,
     getCustomer  : getCustomer,
     addCustomer  : addCustomer,
+    updateCustomer : updateCustomer,
     deleteCustomer : deleteCustomer
+    
 }

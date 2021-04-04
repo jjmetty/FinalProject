@@ -25,7 +25,7 @@ router.route('/customers').get((req,res) =>{
 
 })
 
-//get customer
+//get one customer
 router.route('/customers/:id').get((req,res) =>{
 
     dboperations.getCustomer(req.params.id).then(result => {
@@ -45,6 +45,20 @@ router.route('/addCustomer').post((req,res) =>{
     dboperations.addCustomer(customer).then(result => {
        // console.log(result);
         res.status(201).json(result);
+    })
+
+})
+
+
+//update a customer record
+//post or put??
+router.route('/updateCustomer/:id').put((req,res) =>{
+
+    let customerID = req.params.id;
+    let customer = {...req.body};
+
+    dboperations.updateCustomer(customerID, customer).then(result => {
+        res.json(result);
     })
 
 })
