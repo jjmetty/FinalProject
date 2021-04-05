@@ -67,7 +67,7 @@ router.route('/updateCustomer/:id').put((req,res) =>{
 
 
 //delete a customer
-router.route('/deleteCustomer/:id').get((req,res) => {
+router.route('/deleteCustomer/:id').delete((req,res) => {
 
     let customerID = req.params.id;
 

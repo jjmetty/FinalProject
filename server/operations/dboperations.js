@@ -1,5 +1,6 @@
 var config = require('../database/dbconfig');
 const sql = require ('mssql');
+const customer = require('../models/customer');
 
 
 //get customer table

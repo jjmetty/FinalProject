@@ -23,7 +23,7 @@
       <td>{{customer.zip}}</td>
        <td>
             <router-link :to="{name: 'editCustomer', params: { id: customer.customerID }}" class="btn btn-success">Edit</router-link>              
-            <button @click.prevent="deleteCustomer(customers.customerID)" class="btn btn-danger">Delete</button>
+            <button @click.prevent="deleteCustomer(customer.customerID)" class="btn btn-danger">Delete</button>
         </td>
     </tr>
   </tbody>
@@ -64,13 +64,13 @@ export default {
     },
 
     methods: {
-            deleteCustomer(id){
+  deleteCustomer(id){
                 let apiURL = `http://localhost:8000/api/deleteCustomer/${id}`;
                 let indexOfArrayItem = this.customers.findIndex(i => i.customerID === id);
 
                 if (window.confirm("Delete Reservation?")) {
-                    axios.get(apiURL).then(() => {
-                        this.customers.splice(indexOfArrayItem, 1);
+                    axios.delete(apiURL).then(() => {
+                        this.customers.splice(indexOfArrayItem, 0);
                     }).catch(error => {
                         console.log(error)
                     });
