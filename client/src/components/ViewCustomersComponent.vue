@@ -24,6 +24,7 @@
        <td>
             <router-link :to="{name: 'editCustomer', params: { id: customer.customerID }}" class="btn btn-success">Edit</router-link>              
             <button @click.prevent="deleteCustomer(customer.customerID)" class="btn btn-danger">Delete</button>
+            
         </td>
     </tr>
   </tbody>
@@ -71,6 +72,7 @@ export default {
                 if (window.confirm("Delete Reservation?")) {
                     axios.delete(apiURL).then(() => {
                         this.customers.splice(indexOfArrayItem, 0);
+                        window.location.reload();
                     }).catch(error => {
                         console.log(error)
                     });
