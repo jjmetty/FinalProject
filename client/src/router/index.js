@@ -53,6 +53,19 @@ const routes = [
     component: () => import ('../components/LocationComponent')
   },
 
+  {
+    path: '/viewCustomers',
+    name: 'viewCustomers',
+    component: () => import ('../components/ViewCustomersComponent')
+  },
+
+  {
+    path: '/editCustomer/:id',
+    name: 'editCustomer',
+    component: () => import ('../components/EditCustomerComponent')
+  }
+  
+
 
 
   

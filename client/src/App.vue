@@ -5,7 +5,7 @@
   -->
   
   <div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
   <a class="navbar-brand" href="/">
     <img src="./assets/companyLogo.png" width="250" height="65" alt="">
     </a>
@@ -37,7 +37,7 @@
       <li><router-link to="/newJob"><i class="fas fa-plus"></i>New Job</router-link></li>
       <li><router-link to="/newEmployee"><i class="fas fa-plus"></i>New Employee</router-link></li>
       <li><router-link to="/newSub"><i class="fas fa-plus"></i>New Subcontractor</router-link></li>
-      <li><router-link to=""><i class="fas fa-users"></i>View Customers</router-link></li>
+      <li><router-link to="/viewCustomers"><i class="fas fa-users"></i>View Customers</router-link></li>
       <li><router-link to=""><i class="fas fa-map-marker-alt"></i>View Tree Locations</router-link></li>
     </ul>
   </div>
@@ -109,6 +109,7 @@ https://www.youtube.com/watch?v=YesSVqjcDts&t=3s
   padding: 15px;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   border-top: 1px solid lightgray;
+
 }
 
 .wrapper .sidebar ul li a{
@@ -128,6 +129,11 @@ https://www.youtube.com/watch?v=YesSVqjcDts&t=3s
 .wrapper .sidebar ul li:hover a{
   color:white;
 }
+
+.sidebar{
+   position: fixed;
+}
+
 
 
 </style>
