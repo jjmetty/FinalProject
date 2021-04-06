@@ -79,6 +79,31 @@ router.route('/deleteCustomer/:id').delete((req,res) => {
 //update customer, last crud and test and start on the other tables
 
 
+//get crews
+router.route('/crews').get((req,res) =>{
+
+    dboperations.getCrews().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+// add crew
+router.route('/addCrew').post((req,res) =>{
+
+    let crew = {...req.body}
+
+    dboperations.addCrew(crew).then(result => {
+       // console.log(result);
+        res.status(201).json(result);
+    })
+
+})
+
+
+
+
 
 var port = process.env.PORT || 8000;
 app.listen(port);

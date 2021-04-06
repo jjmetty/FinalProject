@@ -7,7 +7,11 @@
   <thead class="thead-light">
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Street Number</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Cell Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Street #</th>
       <th scope="col">Street Name</th>
       <th scope="col">City</th>
       <th scope="col">Zip</th>
@@ -17,6 +21,10 @@
   <tbody>
     <tr v-for="customer in customers" :key = "customer.customerID">
       <td>{{customer.customerID}}</td>
+      <td>{{customer.contactFN}}</td>
+      <td>{{customer.contactLN}}</td>
+      <td>{{customer.cellPhone}}</td>
+      <td>{{customer.email}}</td>
       <td>{{customer.streetNum}}</td>
       <td>{{customer.streetName}}</td>
       <td>{{customer.city}}</td>
