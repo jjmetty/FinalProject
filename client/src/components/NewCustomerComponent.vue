@@ -5,7 +5,7 @@
        <div class="row justify-content-center">
         <div class="col-md-6">
             <h2 class="text-center">New Customer Form</h2>
-            <form>
+            <form @submit.prevent="handleSubmitForm">
                <div class = "row">
                  <div class="form-group col-sm-2 my-1">
                     <label>Company Name</label>
@@ -19,7 +19,7 @@
 
                 <div class="form-group col-sm-3 my-1">
                     <label>Last Name</label>
-                    <input type="email" class="form-control" v-model = "customer.contactLN" required>
+                    <input type="text" class="form-control" v-model = "customer.contactLN" required>
                 </div>
 
                 <div class="form-group col-sm-4 my-1">
@@ -31,17 +31,17 @@
                <div class = "row">
                   <div class = "form-group col-sm-3 my-1">
                      <label>Home Phone</label>
-                     <input type="tel"  class = "form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-model = "customer.homePhone">
+                     <input type="tel"  class = "form-control"  v-model = "customer.homePhone">
                   </div>
                
                   <div class = "form-group col-sm-3 my-1">
                      <label>Cell Phone</label>
-                     <input type="tel"  class = "form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-model = "customer.cellPhone">
+                     <input type="tel"  class = "form-control"  v-model = "customer.cellPhone">
                   </div>
          
                   <div class = "form-group col-sm-3 my-1">
                      <label>Business Phone</label>
-                     <input type="tel"  class = "form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-model = "customer.businessPhone">
+                     <input type="tel"  class = "form-control"  v-model = "customer.businessPhone">
                   </div>
 
                   <div class = "form-group col-sm-3 my-1">
@@ -60,7 +60,7 @@
 
                 <div class="form-group col-sm-3 my-1">
                     <label>Last Name</label>
-                    <input type="email" class="form-control"  v-model = "customer.contactLN2">
+                    <input type="text" class="form-control"  v-model = "customer.contactLN2">
                 </div>
 
                 <div class="form-group col-sm-4 my-1">
@@ -72,12 +72,12 @@
                <div class = "row">
                   <div class = "form-group col-sm-3 my-1">
                      <label>Home Phone</label>
-                     <input type="tel"  class = "form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-model = "customer.homePhone2">
+                     <input type="tel"  class = "form-control"  v-model = "customer.homePhone2">
                   </div>
                
                   <div class = "form-group col-sm-3 my-1">
                      <label>Cell Phone</label>
-                     <input type="tel"  class = "form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-model = "customer.cellPhone2">
+                     <input type="tel"  class = "form-control"  v-model = "customer.cellPhone2">
                   </div>
          
                   <div class = "form-group col-sm-3 my-1">
@@ -127,10 +127,15 @@
                      <input type="text"  class = "form-control" v-model = "customer.city" required>
                   </div>
 
-                  <div class="form-group col-sm-2 my-1">
+                   
+                <div class = "form-group col-md-2 my-1">
                     <label>State</label>
-                    <input type="text" class="form-control" v-model = "customer.stateID" required>
+                     <select class="form-control" v-model = "customer.stateID">
+                     <option v-for = "state in states" v-bind:key = "state.id" v-bind:value = "state.stateID"> {{state.stateName}}</option>
+                     
+                     </select>
                   </div>
+                   
 
                   <div class="form-group col-sm-2 my-1">
                     <label>Zip Code</label>
@@ -144,7 +149,8 @@
 
                    <div class="form-group">
                 <label>Customer Notes</label>
-                 <textarea class="form-control"  rows="4" cols = "45" ></textarea>
+                 <textarea class="form-control"  rows="4" cols = "45" v-model = "customer.customerNote" >
+                 </textarea>
                 </div>
 
 
@@ -161,7 +167,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 
 export default {
   data(){
@@ -193,11 +199,60 @@ export default {
         zip:'',
         zip4: '',
         customerNote:''
-      }
+      },
+      states: []
        
     }
+
+
   },
+
+      created() {
+            let apiURL = 'http://localhost:8000/api/stateNames';
+            axios.get(apiURL).then(res => {
+                this.states = res.data;
+            }).catch(error => {
+                console.log(error)
+            });
+      },
   methods:{
+    handleSubmitForm() {
+                let apiURL = 'http://localhost:8000/api/addCustomer';
+                
+                axios.post(apiURL, this.customer).then(() => {
+                  this.$router.push('/viewCustomers')
+                  this.customer = {
+                   companyName: '',
+                   contactLN: '',
+                   contactFN: '',
+                   email: '',
+                   cellPhone: '',
+                   homePhone: '',
+                   businessPhone: '',
+                   fax: '',
+                   contactLN2: '',
+                   contactFN2: '',
+                   email2: '',
+                   cellPhone2: '',
+                   homePhone2: '',
+                   businessPhone2: '',
+                   fax2: '',
+                   streetNum: '',
+                   unit: '',
+                   pre_fix:'',
+                   streetName: '',
+                   suffix: '',
+                   unitNum:'',
+                   city: '',
+                   stateID: '',
+                   zip:'',
+                   zip4: '',
+                   customerNote:''
+                  }
+                }).catch(error => {
+                    console.log(error)
+                });
+            }
 
   }
 }

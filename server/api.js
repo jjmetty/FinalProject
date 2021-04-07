@@ -76,6 +76,19 @@ router.route('/deleteCustomer/:id').delete((req,res) => {
     })
 })
 
+
+//get stateNames
+router.route('/stateNames').get((req,res) =>{
+
+    dboperations.getStateName().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+
+
 //update customer, last crud and test and start on the other tables
 
 

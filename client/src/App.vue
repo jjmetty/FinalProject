@@ -134,6 +134,10 @@ https://www.youtube.com/watch?v=YesSVqjcDts&t=3s
    position: fixed;
 }
 
+html {
+  overflow-y: scroll; 
+}
+
 
 
 </style>

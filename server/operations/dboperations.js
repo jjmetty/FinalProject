@@ -143,6 +143,23 @@ async function deleteCustomer(customerID){
 }
 
 
+//get stateName table 
+//get crew table
+async function getStateName(){
+    try{
+        let pool = await sql.connect(config);
+        let stateNames = await pool.request().query("SELECT * from stateName");
+        return stateNames.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+
+
+
+
 
 //get crew table
 async function getCrews(){
@@ -791,6 +808,8 @@ module.exports ={
     addCustomer  : addCustomer,
     updateCustomer : updateCustomer,
     deleteCustomer : deleteCustomer,
+
+    getStateName: getStateName,
 
     getCrews : getCrews,
     getCrew : getCrew,

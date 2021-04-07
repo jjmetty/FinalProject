@@ -77,7 +77,7 @@ export default {
                 let apiURL = `http://localhost:8000/api/deleteCustomer/${id}`;
                 let indexOfArrayItem = this.customers.findIndex(i => i.customerID === id);
 
-                if (window.confirm("Delete Reservation?")) {
+                if (window.confirm("Delete Customer?")) {
                     axios.delete(apiURL).then(() => {
                         this.customers.splice(indexOfArrayItem, 0);
                         window.location.reload();
