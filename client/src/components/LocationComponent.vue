@@ -3,7 +3,7 @@
 
       <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2 class="text-center">New Job Form</h2>
+            <h2 class="text-center">Tree Location</h2>
             <form>
                <div class = "row">
                   <div class = "form-group col-sm-2 my-1">
