@@ -52,7 +52,7 @@ router.route('/addCustomer').post((req,res) =>{
 
 //update a customer record
 //post or put??
-router.route('/updateCustomer/:id').put((req,res) =>{
+router.route('/updateCustomer/:id').post((req,res) =>{
 
     let customerID = req.params.id;
     let customer = {...req.body};

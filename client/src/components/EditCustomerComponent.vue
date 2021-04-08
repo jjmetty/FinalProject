@@ -9,44 +9,44 @@
                <div class = "row">
                  <div class="form-group col-sm-2 my-1">
                     <label>Company Name</label>
-                    <input type="text" class="form-control" v-bind:value = "customer[0].companyName">
+                    <input type="text" class="form-control" v-model = "customer.companyName">
                 </div>
 
                 <div class="form-group col-sm-3 my-1">
                     <label>First Name</label>
-                    <input type="text" class="form-control"  v-bind:value = "customer[0].contactFN" required>
+                    <input type="text" class="form-control"  v-model = "customer.contactFN" required>
                 </div>
 
                 <div class="form-group col-sm-3 my-1">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" v-bind:value = "customer[0].contactLN" required>
+                    <input type="text" class="form-control" v-model = "customer.contactLN" required>
                 </div>
 
                 <div class="form-group col-sm-4 my-1">
                     <label>Email</label>
-                    <input type="email" class="form-control"  v-bind:value = "customer[0].email" required>
+                    <input type="email" class="form-control"  v-model = "customer.email" required>
                 </div>
                 </div>
                
                <div class = "row">
                   <div class = "form-group col-sm-3 my-1">
                      <label>Home Phone</label>
-                     <input type="tel"  class = "form-control"  v-bind:value = "customer[0].homePhone">
+                     <input type="tel"  class = "form-control"  v-model = "customer.homePhone">
                   </div>
                
                   <div class = "form-group col-sm-3 my-1">
                      <label>Cell Phone</label>
-                     <input type="tel"  class = "form-control"  v-bind:value = "customer[0].cellPhone">
+                     <input type="tel"  class = "form-control"  v-model = "customer.cellPhone">
                   </div>
          
                   <div class = "form-group col-sm-3 my-1">
                      <label>Business Phone</label>
-                     <input type="tel"  class = "form-control"  v-bind:value = "customer[0].businessPhone">
+                     <input type="tel"  class = "form-control"  v-model = "customer.businessPhone">
                   </div>
 
                   <div class = "form-group col-sm-3 my-1">
                      <label>Fax</label>
-                     <input type="text"  class = "form-control" v-bind:value = "customer[0].fax">
+                     <input type="text"  class = "form-control" v-model = "customer.fax">
                   </div>
                </div>
 
@@ -55,39 +55,39 @@
                <div class = "row">
                 <div class="form-group col-sm-3 my-1">
                     <label>First Name</label>
-                    <input type="text" class="form-control"  v-bind:value = "customer[0].contactFN2">
+                    <input type="text" class="form-control"  v-model = "customer.contactFN2">
                 </div>
 
                 <div class="form-group col-sm-3 my-1">
                     <label>Last Name</label>
-                    <input type="text" class="form-control"  v-bind:value = "customer[0].contactLN2">
+                    <input type="text" class="form-control"  v-model = "customer.contactLN2">
                 </div>
 
                 <div class="form-group col-sm-4 my-1">
                     <label>Email</label>
-                    <input type="email" class="form-control"  v-bind:value = "customer[0].email2">
+                    <input type="email" class="form-control"  v-model = "customer.email2">
                 </div>
                 </div>
                
                <div class = "row">
                   <div class = "form-group col-sm-3 my-1">
                      <label>Home Phone</label>
-                     <input type="tel"  class = "form-control"  v-bind:value = "customer[0].homePhone2">
+                     <input type="tel"  class = "form-control"  v-model = "customer.homePhone2">
                   </div>
                
                   <div class = "form-group col-sm-3 my-1">
                      <label>Cell Phone</label>
-                     <input type="tel"  class = "form-control"  v-bind:value = "customer[0].cellPhone2">
+                     <input type="tel"  class = "form-control"  v-model = "customer.cellPhone2">
                   </div>
          
                   <div class = "form-group col-sm-3 my-1">
                      <label>Business Phone</label>
-                     <input type="tel"  class = "form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-bind:value = "customer[0].businessPhone2">
+                     <input type="tel"  class = "form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-model = "customer.businessPhone2">
                   </div>
 
                   <div class = "form-group col-sm-3 my-1">
                      <label>Fax</label>
-                     <input type="text"  class = "form-control" v-bind:value = "customer[0].fax2">
+                     <input type="text"  class = "form-control" v-model = "customer.fax2">
                   </div>
                </div>
 
@@ -97,34 +97,34 @@
                <div class = "row">
                   <div class = "form-group col-sm-3 my-1">
                      <label>Street #</label>
-                     <input type="number"  class = "form-control" v-bind:value = "customer[0].streetNum" required>
+                     <input type="number"  class = "form-control" v-model = "customer.streetNum" required>
                   </div>
 
                   <div class="form-group col-sm-2 my-1">
                     <label>Unit</label>
-                    <input type="text" class="form-control" v-bind:value = "customer[0].unit">
+                    <input type="text" class="form-control" v-model = "customer.unit">
                   </div>
 
                   <div class="form-group col-sm-2 my-1">
                     <label>Prefix</label>
-                    <input type="text" class="form-control" v-bind:value = "customer[0].pre_fix">
+                    <input type="text" class="form-control" v-model = "customer.pre_fix">
                   </div>
 
                   <div class="form-group col-sm-3 my-1">
                     <label>Street Name</label>
-                    <input type="text" class="form-control" v-bind:value = "customer[0].streetName" required>
+                    <input type="text" class="form-control" v-model = "customer.streetName" required>
                   </div>
 
                   <div class="form-group col-sm-2 my-1">
                     <label>Suffix</label>
-                    <input type="text" class="form-control" v-bind:value = "customer[0].suffix">
+                    <input type="text" class="form-control" v-model = "customer.suffix">
                   </div>
                </div>
 
                 <div class = "row">
                   <div class = "form-group col-sm-3 my-1">
                      <label>City</label>
-                     <input type="text"  class = "form-control" v-bind:value = "customer[0].city" required>
+                     <input type="text"  class = "form-control" v-model = "customer.city" required>
                   </div>
 
                    
@@ -132,18 +132,17 @@
 
                   <div class="form-group col-sm-2 my-1">
                     <label>Zip Code</label>
-                    <input type="number" class="form-control" v-bind:value = "customer[0].zip" required>
+                    <input type="number" class="form-control" v-model = "customer.zip"  required>
                   </div>
 
                   <div class="form-group col-sm-2 my-1">
                     <label>Zip Code +4</label>
-                    <input type="number" class="form-control" v-bind:value = "customer[0].zip4">
+                    <input type="number" class="form-control" v-model = "customer.zip4">
                   </div>
 
                    <div class="form-group">
                 <label>Customer Notes</label>
-                 <textarea class="form-control"  rows="4" cols = "45" v-bind:value = "customer[0].customerNote" >
-                 </textarea>
+                 <textarea class="form-control"  rows="4" cols = "45" v-model = "customer.customerNote"></textarea>
                 </div>
 
 
@@ -176,22 +175,31 @@ export default {
   
   },
 
-    created() {
-        let apiURL = `http://localhost:8000/api/customers/${this.$route.params.id}`;
-
-        axios.get(apiURL).then((res) => {
-            this.customer = res.data;
-        })
+    created: function() {
+      this.getCustomer();
+    
 
 
     },
     methods: {
+
+        getCustomer(){
+        let apiURL = `http://localhost:8000/api/customers/${this.$route.params.id}`;
+
+        axios.get(apiURL).then((res) => {
+          let customers = res.data;
+          this.customer = customers[0];
+           // this.customer = res.data;
+        })
+    },
+
         handleUpdateForm() {
             let apiURL = `http://localhost:8000/api/updateCustomer/${this.$route.params.id}`;
 
-            axios.put(apiURL, this.customer).then((res) => {
+            axios.post(apiURL, this.customer).then((res) => {
                 console.log(res)
                 this.$router.push('/viewCustomers')
+                
             }).catch(error => {
                 console.log(error)
             });

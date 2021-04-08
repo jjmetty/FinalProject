@@ -118,9 +118,9 @@ async function updateCustomer(customerID, customer){
             .input ('zip',sql.Int, customer.zip)
             .input ('zip4',sql.Int, customer.zip4)
             .input ('customerNote',sql.VarChar, customer.customerNote)
-            .query('UPDATE customer SET customerTypeID = @customerTypeID ,customerRelationshipID = @customerRelationshipID, companyName = @companyName, contactLN = @contactLN, contactFN = @contactFN, email = @email, cellPhone = @cellPhone, homePhone = @homePhone, businessPhone = @businessPhone, fax = @fax, contactLN2 = @contactLN2, contactFN2 = @contactFN2, email2 = @email2, cellPhone2 = @cellPhone2, homePhone2 = @homePhone2, businessPhone2 = @businessPhone2, fax2 = @fax2 , streetNum = @streetNum ,unit = @unit ,pre_fix = @pre_fix ,streetName = @streetName ,suffix = @suffix ,unitNum = @unitNum,city = @city ,stateID = @stateID, zip = @zip ,zip4 = @zip4 ,customerNote = @customerNote WHERE (customerID = @customerID)');
+            .query('UPDATE [dbo].[customer] SET customerTypeID = @customerTypeID ,customerRelationshipID = @customerRelationshipID, companyName = @companyName, contactLN = @contactLN, contactFN = @contactFN, email = @email, cellPhone = @cellPhone, homePhone = @homePhone, businessPhone = @businessPhone, fax = @fax, contactLN2 = @contactLN2, contactFN2 = @contactFN2, email2 = @email2, cellPhone2 = @cellPhone2, homePhone2 = @homePhone2, businessPhone2 = @businessPhone2, fax2 = @fax2 , streetNum = @streetNum ,unit = @unit ,pre_fix = @pre_fix ,streetName = @streetName ,suffix = @suffix ,unitNum = @unitNum,city = @city ,stateID = @stateID, zip = @zip ,zip4 = @zip4 ,customerNote = @customerNote WHERE (customerID = @customerID) ');
 
-        return update.recordsets;
+        return update.recordsets[0];
         
     } catch (error) {
         console.log(error);
@@ -144,7 +144,6 @@ async function deleteCustomer(customerID){
 
 
 //get stateName table 
-//get crew table
 async function getStateName(){
     try{
         let pool = await sql.connect(config);
@@ -857,6 +856,7 @@ module.exports ={
 
     getServiceList : getServiceList,
     getService : getService,
+    
 
     
 }
