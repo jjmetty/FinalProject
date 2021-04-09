@@ -168,6 +168,16 @@ router.route('/deleteEmployee/:id').delete((req,res) => {
     })
 })
 
+//get tree location
+router.route('/treeLocations').get((req,res) =>{
+
+    dboperations.getCustomerLocations().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
 
 
 

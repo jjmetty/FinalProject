@@ -39,9 +39,9 @@
       <li><router-link to="/newEmployee"><i class="fas fa-plus"></i>New Employee</router-link></li>
       <li><router-link to="/newSub"><i class="fas fa-plus"></i>New Subcontractor</router-link></li>
       <li><router-link to="/viewCustomers"><i class="fas fa-users"></i>View Customers</router-link></li>
-      <li><router-link to=""><i class="fas fa-users"></i>View Crews</router-link></li>
+      <li><router-link to="/viewCrews"><i class="fas fa-users"></i>View Crews</router-link></li>
       <li><router-link to="/viewEmployees"><i class="fas fa-users"></i>View Employees</router-link></li>
-      <li><router-link to=""><i class="fas fa-map-marker-alt"></i>View Tree Locations</router-link></li>
+      <li><router-link to="/viewLocation"><i class="fas fa-map-marker-alt"></i>View Tree Locations</router-link></li>
     </ul>
   </div>
 </div>

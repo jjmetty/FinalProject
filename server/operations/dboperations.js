@@ -787,6 +787,530 @@ async function getService(serviceListID){
     catch (error){
         console.log(error);
     }
+
+    /**
+     * async function getcustomerRelationships(){
+    try{
+        let pool = await sql.connect(config);
+        let customerRelationships = await pool.request().query("SELECT * from customerRelationship");
+        return customerRelationships.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one customerRelationship id
+async function getcustomerRelationship(customerRelationshipID){
+    try{
+        let pool = await sql.connect(config);
+        let customerRelationship = await pool.request()
+            .input ('input_param', sql.Int, customerRelationshipID)
+            .query("SELECT * from customerRelationship where customerRelationshipID = @input_param");
+        return customerRelationship.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add customerRelationship
+async function addcustomerRelationship(customerRelationship){
+    try{
+        let pool = await sql.connect(config);
+        let insertcustomerRelationship = await pool.request()
+            .input ('customerRelationshipID', sql.Int, customerRelationship.customerRelationshipID)
+            .input ('customerRelationship', sql.Int, customerRelationship.customerRelationship)
+            .query('INSERT INTO [dbo].[customerRelationship] (customerRelationshipID,customerRelationship) VALUES (@customerRelationshipID, @customerRelationship)');
+           
+        return insertcustomerRelationship.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete customerRelationship
+async function deletecustomerRelationship(customerRelationshipID){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('customerRelationshipID', sql.Int, customerRelationshipID)
+            .query('DELETE FROM [dbo].[customerRelationship] WHERE customerRelationshipID = @customerRelationshipID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//////////////// customerRelationship end
+
+
+///////////////////// customerType begin
+//get customerType table
+async function getcustomerTypes(){
+    try{
+        let pool = await sql.connect(config);
+        let customerTypes = await pool.request().query("SELECT * from customerType");
+        return customerTypes.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one customerType id
+async function getcustomerType(customerTypeID){
+    try{
+        let pool = await sql.connect(config);
+        let customerType = await pool.request()
+            .input ('input_param', sql.Int, customerTypeID)
+            .query("SELECT * from customerType where customerTypeID = @input_param");
+        return customerType.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add customerType
+async function addcustomerType(customerType){
+    try{
+        let pool = await sql.connect(config);
+        let insertcustomerType = await pool.request()
+            .input ('customerTypeID', sql.Int, customerType.customerTypeID)
+            .input ('customerType', sql.Int, customerType.customerType)
+            .query('INSERT INTO [dbo].[customerType] (customerTypeID, customerType) VALUES (@customerTypeID, @customerType)');
+           
+        return insertcustomerType.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete customerType
+async function deletecustomerType(customerTypeID){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('customerTypeID', sql.Int, customerTypeID)
+            .query('DELETE FROM [dbo].[customerType] WHERE customerTypeID = @customerTypeID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//////////////// customerType end
+
+///////////////////// jobStatus begin
+//get jobStatus table
+async function getjobStatus(){
+    try{
+        let pool = await sql.connect(config);
+        let jobStatus = await pool.request().query("SELECT * from jobStatus");
+        return jobStatus.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one jobStatus id
+async function getjobStatus(jobStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let jobStatus = await pool.request()
+            .input ('input_param', sql.Int, jobStatusID)
+            .query("SELECT * from jobStatus where jobStatusID = @input_param");
+        return jobStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add jobStatus
+async function addjobStatus(jobStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let insertjobStatus = await pool.request()
+            .input ('jobStatusID', sql.Int, jobStatus.jobStatusID)
+            .input ('jobStatus', sql.Int, jobStatus.jobStatus)
+            .query('INSERT INTO [dbo].[jobStatus] (jobStatusID,jobStatus) VALUES (@jobStatusID, @jobStatus)');
+           
+        return insertjobStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete jobStatus
+async function deletejobStatus(jobStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('jobStatusID', sql.Int, jobStatusID)
+            .query('DELETE FROM [dbo].[jobStatus] WHERE jobStatusID = @jobStatusID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//////////////// jobStatus end
+
+///////////////////// ServiceStatus begin
+//get ServiceStatus table
+async function getServiceStatus(){
+    try{
+        let pool = await sql.connect(config);
+        let ServiceStatuss = await pool.request().query("SELECT * from ServiceStatus");
+        return ServiceStatuss.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one ServiceStatus id
+async function getServiceStatus(ServiceStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let ServiceStatus = await pool.request()
+            .input ('input_param', sql.Int, ServiceStatusID)
+            .query("SELECT * from ServiceStatus where ServiceStatusID = @input_param");
+        return ServiceStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add ServiceStatus
+async function addServiceStatus(ServiceStatus){
+    try{
+        let pool = await sql.connect(config);
+        let insertServiceStatus = await pool.request()
+            .input ('ServiceStatusID', sql.Int, ServiceStatus.ServiceStatusID)
+            .input ('ServiceStatus', sql.Int, ServiceStatus.ServiceStatus)
+            .query('INSERT INTO [dbo].[ServiceStatus] (ServiceStatusID,ServiceStatus) VALUES (@ServiceStatusID, @ServiceStatus)');
+           
+        return insertServiceStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete ServiceStatus
+async function deleteServiceStatus(ServiceStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('ServiceStatusID', sql.Int, ServiceStatusID)
+            .query('DELETE FROM [dbo].[ServiceStatus] WHERE ServiceStatusID = @ServiceStatusID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//////////////// ServiceStatus end
+
+///////////////////// jobLineStatus begin
+//get jobLineStatus table
+async function getjobLineStatus(){
+    try{
+        let pool = await sql.connect(config);
+        let jobLineStatus = await pool.request().query("SELECT * from jobLineStatus");
+        return jobLineStatus.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one jobLineStatus id
+async function getjobLineStatus(jobLineStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let jobLineStatus = await pool.request()
+            .input ('input_param', sql.Int, jobLineStatusID)
+            .query("SELECT * from jobLineStatus where jobLineStatusID = @input_param");
+        return jobLineStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add jobLineStatus
+async function addjobLineStatus(jobLineStatus){
+    try{
+        let pool = await sql.connect(config);
+        let insertjobLineStatus = await pool.request()
+            .input ('jobLineStatusID', sql.Int, jobLineStatus.jobLineStatusID)
+            .input ('jobLineStatus', sql.Int, jobLineStatus.jobLineStatus)
+            .query('INSERT INTO [dbo].[jobLineStatus] (jobLineStatusID,jobLineStatus) VALUES (@jobLineStatusID, @jobLineStatus)');
+           
+        return insertjobLineStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete jobLineStatus
+async function deletejobLineStatus(jobLineStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('jobLineStatusID', sql.Int, jobLineStatusID)
+            .query('DELETE FROM [dbo].[jobLineStatus] WHERE jobLineStatusID = @jobLineStatusID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//////////////// jobLineStatus end
+
+///////////////////// skillStatus begin
+//get skillStatus table
+async function getskillStatus(){
+    try{
+        let pool = await sql.connect(config);
+        let skillStatus = await pool.request().query("SELECT * from skillStatus");
+        return skillStatus.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one skillStatus id
+async function getskillStatus(skillStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let skillStatus = await pool.request()
+            .input ('input_param', sql.Int, skillStatusID)
+            .query("SELECT * from skillStatus where skillStatusID = @input_param");
+        return skillStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add skillStatus
+async function addskillStatus(skillStatus){
+    try{
+        let pool = await sql.connect(config);
+        let insertskillStatus = await pool.request()
+            .input ('skillStatusID', sql.Int, skillStatus.skillStatusID)
+            .input ('skillStatus', sql.Int, skillStatus.skillStatus)
+            .query('INSERT INTO [dbo].[skillStatus] (skillStatusID,skillStatus) VALUES (@skillStatusID, @skillStatus)');
+           
+        return insertskillStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete skillStatus
+async function deleteskillStatus(skillStatusTypeID){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('skillStatusID', sql.Int, skillStatusID)
+            .query('DELETE FROM [dbo].[skillStatus] WHERE skillStatusID = @skillStatusID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//////////////// skillStatus end
+
+///////////////////// positionStatus begin
+//get positionStatus table
+async function getpositionStatus(){
+    try{
+        let pool = await sql.connect(config);
+        let positionStatus = await pool.request().query("SELECT * from positionStatus");
+        return positionStatus.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one positionStatus id
+async function getpositionStatus(positionStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let positionStatus = await pool.request()
+            .input ('input_param', sql.Int, positionStatusID)
+            .query("SELECT * from positionStatus where positionStatusID = @input_param");
+        return positionStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add positionStatus
+async function addpositionStatus(positionStatus){
+    try{
+        let pool = await sql.connect(config);
+        let insertpositionStatus = await pool.request()
+            .input ('positionStatusID', sql.Int, positionStatus.positionStatusID)
+            .input ('positionStatus', sql.Int, positionStatus.positionStatus)
+            .query('INSERT INTO [dbo].[positionStatus] (positionStatusID,positionStatus) VALUES (@positionStatusID, @positionStatus)');
+           
+        return insertpositionStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete positionStatus
+async function deletepositionStatus(positionStatusTypeID){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('positionStatusID', sql.Int, positionStatusID)
+            .query('DELETE FROM [dbo].[positionStatus] WHERE positionStatusID = @positionStatusID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//////////////// positionStatus end
+
+///////////////////// employeeStatu begin
+//get employeeStatu table
+async function getemployeeStatus(){
+    try{
+        let pool = await sql.connect(config);
+        let employeeStatus = await pool.request().query("SELECT * from employeeStatus");
+        return employeeStatus.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one employeeStatu id
+async function getemployeeStatus(employeeStatusID){
+    try{
+        let pool = await sql.connect(config);
+        let employeeStatus = await pool.request()
+            .input ('input_param', sql.Int, employeeStatusID)
+            .query("SELECT * from employeeStatus where employeeStatusID = @input_param");
+        return employeeStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add employeeStatu
+async function addemployeeStatus(employeeStatus){
+    try{
+        let pool = await sql.connect(config);
+        let insertemployeeStatu = await pool.request()
+            .input ('employeeStatusID', sql.Int, employeeStatus.employeeStatusID)
+            .input ('employeeStatus', sql.Int, employeeStatu.employeeStatusTypeID)
+            .query('INSERT INTO [dbo].[employeeStatus] (employeeStatusID,employeeStatus) VALUES (@employeeStatusID, @employeeStatus)');
+           
+        return insertemployeeStatus.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete employeeStatus
+async function deleteemployeeStatus(employeeStatus){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('employeeStatuID', sql.Int, employeeStatusID)
+            .query('DELETE FROM [dbo].[employeeStatus] WHERE employeeStatusID = @employeeStatusID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//////////////// employeeStatu end
+
+///////////////////// subContractorType begin
+//get subContractorType table
+async function getsubContractorTypes(){
+    try{
+        let pool = await sql.connect(config);
+        let subContractorTypes = await pool.request().query("SELECT * from subContractorType");
+        return subContractorTypes.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+//get one subContractorType id
+async function getsubContractorType(subContractorTypeID){
+    try{
+        let pool = await sql.connect(config);
+        let subContractorType = await pool.request()
+            .input ('input_param', sql.Int, subContractorTypeID)
+            .query("SELECT * from subContractorType where subContractorTypeID = @input_param");
+        return subContractorType.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//add subContractorType
+async function addsubContractorType(subContractorType){
+    try{
+        let pool = await sql.connect(config);
+        let insertsubContractorType = await pool.request()
+            .input ('subContractorTypeID', sql.Int, subContractorType.subContractorTypeID)
+            .input ('subContractorType', sql.Int, subContractorType.subContractorType)
+            .query('INSERT INTO [dbo].[subContractorType] (subContractorTypeID,subContractorType) VALUES (@subContractorTypeID, @subContractorType)');
+           
+        return insertsubContractorType.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+//delete subContractorType
+async function deletesubContractorType(subContractorTypeTypeID){
+    try{
+        let pool = await sql.connect(config);
+        let deleted = await pool.request()
+            .input ('subContractorTypeID', sql.Int, subContractorTypeID)
+            .query('DELETE FROM [dbo].[subContractorType] WHERE subContractorTypeID = @subContractorTypeID');
+        return deleted.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+     * 
+     * 
+     */
 }
 
 
