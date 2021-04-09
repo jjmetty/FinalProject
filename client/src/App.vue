@@ -34,10 +34,13 @@
   <div class = "sidebar bg-light">
     <ul>
       <li><router-link to="/newCustomer"><i class="fas fa-plus"></i>New Customer</router-link></li>
+      <li><router-link to=""><i class="fas fa-plus"></i>New Crew</router-link></li>
       <li><router-link to="/newJob"><i class="fas fa-plus"></i>New Job</router-link></li>
       <li><router-link to="/newEmployee"><i class="fas fa-plus"></i>New Employee</router-link></li>
       <li><router-link to="/newSub"><i class="fas fa-plus"></i>New Subcontractor</router-link></li>
       <li><router-link to="/viewCustomers"><i class="fas fa-users"></i>View Customers</router-link></li>
+      <li><router-link to=""><i class="fas fa-users"></i>View Crews</router-link></li>
+      <li><router-link to="/viewEmployees"><i class="fas fa-users"></i>View Employees</router-link></li>
       <li><router-link to=""><i class="fas fa-map-marker-alt"></i>View Tree Locations</router-link></li>
     </ul>
   </div>

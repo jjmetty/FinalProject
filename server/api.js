@@ -114,6 +114,59 @@ router.route('/addCrew').post((req,res) =>{
 
 })
 
+//get employees
+router.route('/employees').get((req,res) =>{
+
+    dboperations.getEmployees().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get one employee
+router.route('/employees/:id').get((req,res) =>{
+
+    dboperations.getEmployee(req.params.id).then(result => {
+     //   console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//add an employee
+router.route('/addEmployee').post((req,res) =>{
+
+    let employee = {...req.body}
+
+    dboperations.addEmployee(employee).then(result => {
+       // console.log(result);
+        res.status(201).json(result);
+    })
+
+})
+
+//update an employee
+router.route('/updateEmployee/:id').post((req,res) =>{
+
+    let employeeID = req.params.id;
+    let employee = {...req.body};
+
+    dboperations.updateEmployee(employeeID, employee).then(result => {
+        res.json(result);
+    })
+
+})
+
+//delete an employee
+router.route('/deleteEmployee/:id').delete((req,res) => {
+
+    let employeeID = req.params.id;
+
+    dboperations.deleteEmployee(employeeID).then (result =>{
+        res.json(result);
+    })
+})
 
 
 

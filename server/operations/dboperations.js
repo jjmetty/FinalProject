@@ -157,9 +157,6 @@ async function getStateName(){
 
 
 
-
-
-
 //get crew table
 async function getCrews(){
     try{
@@ -378,16 +375,15 @@ async function addEmployee(employee){
     try{
         let pool = await sql.connect(config);
         let insertEmployee = await pool.request()
-            .input ('employeeID', sql.Int, employee.employeeID)
-            .input ('statusID', sql.Int, employee.stateID)
+            .input ('statusID', sql.Int, employee.statusID)
             .input ('firstName', sql.VarChar, employee.firstName)
             .input ('lastName', sql.VarChar, employee.lastName)
-            .input ('dob', sql.Date, employee.dob)
+          //  .input ('dob', sql.Date, employee.dob)
             .input ('phone', sql.VarChar, employee.phone)
             .input ('employeeLanguage', sql.VarChar, employee.employeeLanguage)
             .input ('email', sql.VarChar, employee.email)
             .input ('crewID', sql.Int, employee.crewID)
-            .query('INSERT INTO [dbo].[employee] (employeeID,statusID,firstName,lastName,dob,phone,employeeLanguage,email,crewID) VALUES (@)employeeID, @statusID, @firstName, @lastName, @dob, @phone, @employeeLanguage, @email, @crewID');
+            .query('INSERT INTO [dbo].[employee] (statusID,firstName,lastName,phone,employeeLanguage,email,crewID) VALUES ( @statusID, @firstName, @lastName, @phone, @employeeLanguage, @email, @crewID)');
              
             return insertEmployee.recordsets;
 
@@ -404,7 +400,7 @@ async function updateEmployee(employeeID, employee){
         let pool = await sql.connect(config);
         let update = await pool.request()
         .input ('employeeID', sql.Int, employeeID)
-        .input ('statusID', sql.Int, employee.customerID)
+        .input ('statusID', sql.Int, employee.statusID)
         .input ('firstName', sql.VarChar, employee.firstName)
         .input ('lastName', sql.VarChar, employee.lastName)
         .input ('dob', sql.Date, employee.dob)

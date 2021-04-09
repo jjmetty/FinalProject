@@ -4,7 +4,7 @@
 
        <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2 class="text-center">Update Customer Form</h2>
+            <h2 class="text-center">Update Customer</h2>
             <form @submit.prevent="handleUpdateForm">
                <div class = "row">
                  <div class="form-group col-sm-2 my-1">
@@ -177,6 +177,9 @@ export default {
 
     created: function() {
       this.getCustomer();
+
+
+      
     
 
 
