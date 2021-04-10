@@ -789,7 +789,7 @@ async function getService(serviceListID){
 }
 
 //get subContractor table
-async function getSubcontractor(){
+async function getSubcontractors(){
     try{
         let pool = await sql.connect(config);
         let subContractor = await pool.request().query("SELECT * from subContractor");
@@ -799,6 +799,53 @@ async function getSubcontractor(){
         console.log(error);
     } 
 }
+
+//get one subContractor 
+async function getSubcontractor(subContractorID){
+    try{
+        let pool = await sql.connect(config);
+        let subcontractor = await pool.request()
+            .input ('input_param', sql.Int, subContractorID)
+            .query("SELECT * from subContractor where subContractorID = @input_param");
+        return subcontractor.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+
+//add subcontractor
+async function addSubcontractor(subcontractor){
+    try{
+        let pool = await sql.connect(config);
+        let insertSubcontractor = await pool.request()
+            .input ('subContractorTypeID', sql.Int, subcontractor.subContractorTypeID)
+            .input ('companyName', sql.Int, subcontractor.companyName)
+            .input ('phone', sql.VarChar, subcontractor.phone)
+            .input ('email', sql.VarChar, subcontractor.email)
+            .input ('streetNum', sql.VarChar, subcontractor.streetNum)
+            .input ('unit', sql.VarChar, subcontractor.unit)
+            .input ('pre_fix', sql.VarChar, subcontractor.pre_fix)
+            .input ('streetName', sql.VarChar, subcontractor.streetName)
+            .input ('suffix', sql.VarChar, subcontractor.suffix)
+            .input ('unitNum', sql.VarChar, subcontractor.unitNum)
+            .input ('city', sql.VarChar, subcontractor.city)
+            .input ('stateID', sql.VarChar, subcontractor.stateID)
+            .input ('zip', sql.VarChar, subcontractor.zip)
+            .input ('zip4', sql.VarChar, subcontractor.zip4)
+            .query('INSERT INTO [dbo].[subContractor] (subContractorTypeID, companyName, phone, email, streetNum, unit, pre_fix, streetName, suffix, unitNum, city, stateID, zip, zip4) VALUES (@subContractorTypeID, @companyName, @phone, @email, @streetNum, @unit, @pre_fix, @streetName, @suffix, @unitNum, @city, @stateID, @zip, @zip4 )');
+           
+        return insertSubcontractor.recordsets;
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+
+
+
 
     /**
      * async function getcustomerRelationships(){
@@ -1389,7 +1436,9 @@ module.exports ={
     getServiceList : getServiceList,
     getService : getService,
 
-    getSubcontractor : getSubcontractor
+    getSubcontractors : getSubcontractors,
+    getSubcontractor  : getSubcontractor,
+    addSubcontractor  : addSubcontractor
     
 
     

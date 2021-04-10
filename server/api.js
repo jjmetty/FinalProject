@@ -226,13 +226,34 @@ router.route('/jobs').get((req,res) =>{
 //get subcontractor table
 router.route('/subcontractors').get((req,res) =>{
 
-    dboperations.getSubcontractor().then(result => {
+    dboperations.getSubcontractors().then(result => {
       //  console.log(result);
         res.json(result[0]);
     })
 
 })
 
+//get one subcontractor table
+router.route('/subcontractor/:id').get((req,res) =>{
+
+    dboperations.getSubcontractor(req.params.id).then(result => {
+     //   console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//add a subcontractor
+router.route('/addSubcontractor').post((req,res) =>{
+
+    let sub = {...req.body}
+
+    dboperations.addSubcontractor(sub).then(result => {
+       // console.log(result);
+        res.status(201).json(result);
+    })
+
+})
 
 var port = process.env.PORT || 8000;
 app.listen(port);
