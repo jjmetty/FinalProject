@@ -88,6 +88,30 @@ const routes = [
     path: '/viewCrews',
     name: 'viewCrews',
     component: () => import ('../components/ViewCrewsComponent')
+  },
+
+  {
+    path: '/newCrew',
+    name: 'newCrew',
+    component: () => import ('../components/NewCrewComponent')
+  },
+
+  {
+    path: '/editCrew/:id',
+    name: 'editCrew',
+    component: () => import ('../components/EditCrewComponent')
+  },
+
+  {
+    path: '/viewJobs',
+    name: 'viewJobs',
+    component: () => import ('../components/ViewJobsComponent')
+  },
+
+  {
+    path: '/viewSubcontractors',
+    name: 'viewSubcontractors',
+    component: () => import ('../components/ViewSubcontractorComponent')
   }
 
 

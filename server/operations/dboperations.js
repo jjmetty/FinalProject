@@ -189,9 +189,8 @@ async function addCrew(crew){
     try{
         let pool = await sql.connect(config);
         let insertCrew = await pool.request()
-            .input ('crewID', sql.Int, crew.crewID)
             .input ('crewName', sql.VarChar, crew.crewName)
-            .query('INSERT INTO [dbo].[crew] (crewID,crewName) VALUES (@crewID, @crewName)');
+            .query('INSERT INTO [dbo].[crew] (crewName) VALUES (@crewName)');
            
         return insertCrew.recordsets;
 
@@ -209,7 +208,7 @@ async function updateCrew(crewID, crew){
         let update = await pool.request()
             .input ('crewID', sql.Int, crewID)
             .input ('crewName', sql.VarChar, crew.crewName)
-            .query('UPDATE crew SET crewID = @crewID, crewName = @crewName WHERE (crewID = @crewID)');
+            .query('UPDATE crew SET  crewName = @crewName WHERE (crewID = @crewID)');
 
         return update.recordsets;
         
@@ -787,6 +786,19 @@ async function getService(serviceListID){
     catch (error){
         console.log(error);
     }
+}
+
+//get subContractor table
+async function getSubcontractor(){
+    try{
+        let pool = await sql.connect(config);
+        let subContractor = await pool.request().query("SELECT * from subContractor");
+        return subContractor.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
 
     /**
      * async function getcustomerRelationships(){
@@ -1311,7 +1323,7 @@ async function deletesubContractorType(subContractorTypeTypeID){
      * 
      * 
      */
-}
+
 
 
 
@@ -1376,6 +1388,8 @@ module.exports ={
 
     getServiceList : getServiceList,
     getService : getService,
+
+    getSubcontractor : getSubcontractor
     
 
     

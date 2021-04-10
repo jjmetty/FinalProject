@@ -29,6 +29,7 @@
             <router-link :to="{name: 'editEmployee', params: { id: employee.employeeID }}" class="btn btn-success">Edit</router-link>              
             <button @click.prevent="deleteEmployee(employee.employeeID)" class="btn btn-danger">Delete</button>
             
+            
         </td>
     </tr>
   </tbody>

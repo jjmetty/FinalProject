@@ -14,4 +14,8 @@ const config = {
     
 }
 
+
+//server name
+// CoT-CIS4375-09
+
 module.exports = config;

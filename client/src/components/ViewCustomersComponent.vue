@@ -28,10 +28,12 @@
       <td>{{customer.streetNum}}</td>
       <td>{{customer.streetName}}</td>
       <td>{{customer.city}}</td>
+
       <td>{{customer.zip}}</td>
        <td>
             <router-link :to="{name: 'editCustomer', params: { id: customer.customerID }}" class="btn btn-success">Edit</router-link>              
             <button @click.prevent="deleteCustomer(customer.customerID)" class="btn btn-danger">Delete</button>
+            <button class= "btn btn-primary">View</button>
             
         </td>
     </tr>

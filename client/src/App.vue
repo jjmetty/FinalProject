@@ -34,14 +34,17 @@
   <div class = "sidebar bg-light">
     <ul>
       <li><router-link to="/newCustomer"><i class="fas fa-plus"></i>New Customer</router-link></li>
-      <li><router-link to=""><i class="fas fa-plus"></i>New Crew</router-link></li>
+      <li><router-link to="newCrew"><i class="fas fa-plus"></i>New Crew</router-link></li>
       <li><router-link to="/newJob"><i class="fas fa-plus"></i>New Job</router-link></li>
       <li><router-link to="/newEmployee"><i class="fas fa-plus"></i>New Employee</router-link></li>
       <li><router-link to="/newSub"><i class="fas fa-plus"></i>New Subcontractor</router-link></li>
       <li><router-link to="/viewCustomers"><i class="fas fa-users"></i>View Customers</router-link></li>
       <li><router-link to="/viewCrews"><i class="fas fa-users"></i>View Crews</router-link></li>
+      <li><router-link to="/viewSubcontractors"><i class="fas fa-users"></i>View Subcontractors</router-link></li>
       <li><router-link to="/viewEmployees"><i class="fas fa-users"></i>View Employees</router-link></li>
+      <li><router-link to="/viewJobs"><i class="fas fa-tree"></i>View Jobs</router-link></li>
       <li><router-link to="/viewLocation"><i class="fas fa-map-marker-alt"></i>View Tree Locations</router-link></li>
+      <li><router-link to=""><i class="fas fa-scroll"></i>View Reports</router-link></li>
     </ul>
   </div>
 </div>

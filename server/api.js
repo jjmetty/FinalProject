@@ -114,6 +114,40 @@ router.route('/addCrew').post((req,res) =>{
 
 })
 
+//get one crew
+router.route('/crews/:id').get((req,res) =>{
+
+    dboperations.getCrew(req.params.id).then(result => {
+     //   console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//update a crew
+router.route('/updateCrew/:id').post((req,res) =>{
+
+    let crewID = req.params.id;
+    let crew = {...req.body};
+
+    dboperations.updateCrew(crewID, crew).then(result => {
+        res.json(result);
+    })
+
+})
+
+//delete a crew
+router.route('/deleteCrew/:id').delete((req,res) => {
+
+    let crewID = req.params.id;
+
+    dboperations.deleteCrew(crewID).then (result =>{
+        res.json(result);
+    })
+})
+
+
+
 //get employees
 router.route('/employees').get((req,res) =>{
 
@@ -178,7 +212,26 @@ router.route('/treeLocations').get((req,res) =>{
 
 })
 
+//get jobs
+router.route('/jobs').get((req,res) =>{
 
+    dboperations.getJobs().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+
+//get subcontractor table
+router.route('/subcontractors').get((req,res) =>{
+
+    dboperations.getSubcontractor().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
 
 
 var port = process.env.PORT || 8000;

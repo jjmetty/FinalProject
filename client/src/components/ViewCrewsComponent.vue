@@ -22,8 +22,9 @@
   
 
        <td>
-            <router-link :to="{name: 'editcrew', params: { id: crew.crewID }}" class="btn btn-success">Edit</router-link>              
-            <button @click.prevent="deletecrew(crew.crewID)" class="btn btn-danger">Delete</button>
+            <router-link :to="{name: 'editCrew', params: { id: crew.crewID }}" class="btn btn-success">Edit</router-link>              
+            <button @click.prevent="deleteCrew(crew.crewID)" class="btn btn-danger">Delete</button>
+            
             
         </td>
     </tr>
@@ -66,14 +67,14 @@ export default {
     
 //foreign key restratint with table crewPosition
     methods: {
-  deletecrew(id){
-                let apiURL = `http://localhost:8000/api/deletecrew/${id}`;
+  deleteCrew(id){
+                let apiURL = `http://localhost:8000/api/deleteCrew/${id}`;
                 let indexOfArrayItem = this.crews.findIndex(i => i.crewID === id);
 
                 if (window.confirm("Delete crew?")) {
                     axios.delete(apiURL).then(() => {
                         this.crews.splice(indexOfArrayItem, 0);
-                        window.crew.reload();
+                        window.location.reload();
                     }).catch(error => {
                         console.log(error)
                     });
