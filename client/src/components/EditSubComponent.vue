@@ -1,11 +1,9 @@
 <template>
 <div>
-   <!--<h1 style="text-align:center;">New Customer Form </h1> -->
-
-       <div class="row justify-content-center">
+  <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2 class="text-center">New Subcontractor Form</h2>
-            <form @submit.prevent="handleSubmitForm">
+            <h2 class="text-center">Update Subcontractor</h2>
+            <form @submit.prevent="handleUpdateForm">
                <div class = "row">
 
                  <div class = "form-group col-sm-3 my-1">
@@ -61,7 +59,7 @@
 
                   <div class="form-group col-sm-2 my-1">
                     <label >State</label>
-                    <select class="form-control" v-model= "sub.stateID" required>
+                    <select class="form-control" v-model= "sub.stateID">
                     <option v-for = "state in states" v-bind:key = "state.id" v-bind:value = "state.stateID"> {{state.stateName}}</option>
 
                     </select>
@@ -90,17 +88,11 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <button class="btn btn-success btn-block col-sm-3 my-1">Create</button>
+                    <button class="btn btn-success btn-block col-sm-3 my-1">Update</button>
                 </div>
             </form>
         </div>
     </div>
-
-   
-   
-
-   
-
 </div>
 </template>
 
@@ -111,47 +103,38 @@ import axios from "axios";
 export default {
   data(){
     return{
-      sub:{
-        subContractorTypeID: '',
-        companyName: '',
-        phone: '',
-        email: '',
-        streetNum: '',
-        unit: '',
-        pre_fix: '',
-        streetName: '',
-        suffix: '',
-        unitNum: '',
-        city:'',
-        stateID:'',
-        zip: '',
-        zip4:''
-        
-
-      },
-      states: [],
-      subtypes: []
-
-     
-
-    
+      sub: {},
+      subtypes: {},
+      states: {}
 
     }
 
+    
 
+
+  
   },
 
-      created() {
-           let apiURL = 'http://localhost:8000/api/stateNames';
+    created: function() {
+         let apiURL = 'http://localhost:8000/api/stateNames';
             axios.get(apiURL).then(res => {
                 this.states = res.data;
             }).catch(error => {
                 console.log(error)
             });
-      },
-  methods:{
 
-    subTypes(){
+            
+
+      this.getSub();
+
+
+      
+    
+
+
+    },
+    methods: {
+            subTypes(){
        let apiURL = 'http://localhost:8000/api/subtype';
             axios.get(apiURL).then(res => {
                 this.subtypes = res.data;
@@ -160,32 +143,42 @@ export default {
             });
 
     },
-    handleSubmitForm() {
-                let apiURL = 'http://localhost:8000/api/addSubcontractor';
-                
-                axios.post(apiURL, this.sub).then(() => {
-                  this.$router.push('/viewSubcontractors')
-                  this.sub = {
-                         subContractorTypeID: '',
-                         companyName: '',
-                         phone: '',
-                         email: '',
-                         streetNum: '',
-                         unit: '',
-                         pre_fix: '',
-                         streetName: '',
-                         suffix: '',
-                         unitNum: '',
-                         city:'',
-                         stateID:'',
-                         zip: '',
-                         zip4:''
-                  }
-                }).catch(error => {
-                    console.log(error)
-                });
-            }
+        clickStates(){
+       let apiURL = 'http://localhost:8000/api/subtype';
+            axios.get(apiURL).then(res => {
+                this.subtypes = res.data;
+            }).catch(error => {
+                console.log(error)
+            });
 
-  }
-}
+    },
+
+    
+
+        
+        getSub(){
+        let apiURL = `http://localhost:8000/api/subcontractor/${this.$route.params.id}`;
+
+        axios.get(apiURL).then((res) => {
+          let subs = res.data;
+          this.sub = subs[0];
+           // this.customer = res.data;
+        })
+    },
+
+        handleUpdateForm() {
+            let apiURL = `http://localhost:8000/api/updateSub/${this.$route.params.id}`;
+
+            axios.post(apiURL, this.sub).then((res) => {
+                console.log(res)
+                this.$router.push('/viewSubcontractors')
+                
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+    }
+}  
+
+
 </script>

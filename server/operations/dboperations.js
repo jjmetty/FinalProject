@@ -821,17 +821,17 @@ async function addSubcontractor(subcontractor){
         let pool = await sql.connect(config);
         let insertSubcontractor = await pool.request()
             .input ('subContractorTypeID', sql.Int, subcontractor.subContractorTypeID)
-            .input ('companyName', sql.Int, subcontractor.companyName)
+            .input ('companyName', sql.VarChar, subcontractor.companyName)
             .input ('phone', sql.VarChar, subcontractor.phone)
             .input ('email', sql.VarChar, subcontractor.email)
-            .input ('streetNum', sql.VarChar, subcontractor.streetNum)
+            .input ('streetNum', sql.Int, subcontractor.streetNum)
             .input ('unit', sql.VarChar, subcontractor.unit)
             .input ('pre_fix', sql.VarChar, subcontractor.pre_fix)
             .input ('streetName', sql.VarChar, subcontractor.streetName)
             .input ('suffix', sql.VarChar, subcontractor.suffix)
-            .input ('unitNum', sql.VarChar, subcontractor.unitNum)
+            .input ('unitNum', sql.Int, subcontractor.unitNum)
             .input ('city', sql.VarChar, subcontractor.city)
-            .input ('stateID', sql.VarChar, subcontractor.stateID)
+            .input ('stateID', sql.Int, subcontractor.stateID)
             .input ('zip', sql.VarChar, subcontractor.zip)
             .input ('zip4', sql.VarChar, subcontractor.zip4)
             .query('INSERT INTO [dbo].[subContractor] (subContractorTypeID, companyName, phone, email, streetNum, unit, pre_fix, streetName, suffix, unitNum, city, stateID, zip, zip4) VALUES (@subContractorTypeID, @companyName, @phone, @email, @streetNum, @unit, @pre_fix, @streetName, @suffix, @unitNum, @city, @stateID, @zip, @zip4 )');
@@ -845,6 +845,48 @@ async function addSubcontractor(subcontractor){
 }
 
 
+//update subcontractor
+async function updateSubcontractor(subContractorID, subcontractor){
+    try {
+        let pool = await sql.connect(config);
+        let update = await pool.request()
+        .input ('subContractorID', sql.Int, subContractorID)
+        .input ('subContractorTypeID', sql.Int, subcontractor.subContractorTypeID)
+        .input ('companyName', sql.VarChar, subcontractor.companyName)
+        .input ('phone', sql.VarChar, subcontractor.phone)
+        .input ('email', sql.VarChar, subcontractor.email)
+        .input ('streetNum', sql.Int, subcontractor.streetNum)
+        .input ('unit', sql.VarChar, subcontractor.unit)
+        .input ('pre_fix', sql.VarChar, subcontractor.pre_fix)
+        .input ('streetName', sql.VarChar, subcontractor.streetName)
+        .input ('suffix', sql.VarChar, subcontractor.suffix)
+        .input ('unitNum', sql.Int, subcontractor.unitNum)
+        .input ('city', sql.VarChar, subcontractor.city)
+        .input ('stateID', sql.Int, subcontractor.stateID)
+        .input ('zip', sql.VarChar, subcontractor.zip)
+        .input ('zip4', sql.VarChar, subcontractor.zip4)
+        .query('UPDATE subContractor SET subContractorTypeID = @subContractorTypeID, companyName = @companyName , phone = @phone , email = @email, streetNum = @streetNum, unit = @unit , pre_fix = @pre_fix , streetName = @streetName, suffix = @suffix , unitNum = @unitNum, city = @city, stateID = @stateID, zip = @zip, zip4 = @zip4 WHERE (subContractorID = @subContractorID) ');
+
+        return update.recordsets;
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+//get subContractorType table
+async function getsubContractorTypes(){
+    try{
+        let pool = await sql.connect(config);
+        let subContractorTypes = await pool.request().query("SELECT * from subContractorType");
+        return subContractorTypes.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
 
 
     /**
@@ -1438,7 +1480,10 @@ module.exports ={
 
     getSubcontractors : getSubcontractors,
     getSubcontractor  : getSubcontractor,
-    addSubcontractor  : addSubcontractor
+    addSubcontractor  : addSubcontractor,
+    updateSubcontractor : updateSubcontractor,
+
+    getsubContractorTypes : getsubContractorTypes
     
 
     

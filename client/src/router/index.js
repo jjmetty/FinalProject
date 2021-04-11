@@ -112,7 +112,15 @@ const routes = [
     path: '/viewSubcontractors',
     name: 'viewSubcontractors',
     component: () => import ('../components/ViewSubcontractorComponent')
+  },
+
+  {
+    path: '/editSub/:id',
+    name: 'editSub',
+    component: () => import ('../components/EditSubComponent')
   }
+
+
 
 
 

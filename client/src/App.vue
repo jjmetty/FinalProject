@@ -16,7 +16,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="https://www.intelius.com/?gclid=Cj0KCQiAs5eCBhCBARIsAEhk4r4URKpcA-Da8qUFFx34V3MF1vvy9gAs9qdHBiLRjqvmTg1rucvQW9QaAp8LEALw_wcB" target="_blank">Inteluis</a>
+        <a class="nav-link" href="https://www.intelius.com/?gclid=Cj0KCQiAs5eCBhCBARIsAEhk4r4URKpcA-Da8qUFFx34V3MF1vvy9gAs9qdHBiLRjqvmTg1rucvQW9QaAp8LEALw_wcB" target="_blank">Intelius</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="https://hcad.org/" target="_blank">HCAD</a>

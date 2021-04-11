@@ -255,6 +255,28 @@ router.route('/addSubcontractor').post((req,res) =>{
 
 })
 
+//update a subcontractor
+router.route('/updateSub/:id').post((req,res) =>{
+
+    let subID = req.params.id;
+    let sub = {...req.body};
+
+    dboperations.updateSubcontractor(subID, sub).then(result => {
+        res.json(result);
+    })
+
+})
+
+//get subcontractor types table
+router.route('/subtype').get((req,res) =>{
+
+    dboperations.getsubContractorTypes().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
 var port = process.env.PORT || 8000;
 app.listen(port);
 console.log('Server is running on port ' + port);
