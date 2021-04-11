@@ -297,6 +297,31 @@ router.route('/treeLocation/:id').get((req,res) =>{
 
 })
 
+//add customer tree location
+router.route('/addTreeLocation').post((req,res) =>{
+
+    let location = {...req.body}
+
+    dboperations.addCustomerLocation(location).then(result => {
+       // console.log(result);
+        res.status(201).json(result);
+    })
+
+})
+
+//update customer location
+router.route('/updateLocation/:id').post((req,res) =>{
+
+    let locationID = req.params.id;
+    let location = {...req.body};
+
+    dboperations.updateCustomerLocation(locationID, location).then(result => {
+        res.json(result);
+    })
+
+})
+
+
 
 var port = process.env.PORT || 8000;
 app.listen(port);

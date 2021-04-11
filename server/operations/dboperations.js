@@ -268,7 +268,6 @@ async function addCustomerLocation(customerLocation){
     try{
         let pool = await sql.connect(config);
         let insertCustomerLocation = await pool.request()
-            .input ('locationID', sql.Int, customerLocation.locationID)
             .input ('customerID', sql.Int, customerLocation.customerID)
             .input ('streetNum', sql.Int, customerLocation.streetNum)
             .input ('unit',sql.VarChar, customerLocation.unit)
@@ -285,7 +284,7 @@ async function addCustomerLocation(customerLocation){
             .input('addedValue',sql.Float, customerLocation.addedValue)
             .input('propertyValue',sql.Float, customerLocation.propertyValue)
             .input('nextAnticipatedDate',sql.Date, customerLocation.nextAnticipatedDate)
-            .query('INSERT INTO [dbo].[customerLocation] (locationID, customerID, streetNum,unit,pre_fix,streetName,suffix,unitNum,city,stateID,zip,zip4,keyMap,lotValue, addedValue, propertyValue) VALUES (@locationID, @customerID, @streetNum,@unit,@pre_fix,@streetName,@suffix,@unitNum,@city,@stateID,@zip,@zip4,@keyMap, @lotValue, @addedValue, @propertyValue, @nextAnticipatedDate)');
+            .query('INSERT INTO [dbo].[customerLocation] (customerID, streetNum,unit,pre_fix,streetName,suffix,unitNum,city,stateID,zip,zip4,keyMap,lotValue, addedValue, propertyValue,nextAnticipatedDate) VALUES (@customerID, @streetNum,@unit,@pre_fix,@streetName,@suffix,@unitNum,@city,@stateID,@zip,@zip4,@keyMap, @lotValue, @addedValue, @propertyValue, @nextAnticipatedDate)');
              
             return insertCustomerLocation.recordsets;
 

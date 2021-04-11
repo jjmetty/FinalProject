@@ -118,7 +118,14 @@ const routes = [
     path: '/editSub/:id',
     name: 'editSub',
     component: () => import ('../components/EditSubComponent')
+  },
+
+  {
+    path: '/editLocation/:id',
+    name: 'editLocation',
+    component: () => import ('../components/EditLocationComponent')
   }
+
 
 
 

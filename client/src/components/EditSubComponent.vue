@@ -123,6 +123,13 @@ export default {
                 console.log(error)
             });
 
+       let apiURL1 = 'http://localhost:8000/api/subtype';
+            axios.get(apiURL1).then(res => {
+                this.subtypes = res.data;
+            }).catch(error => {
+                console.log(error)
+            });
+
             
 
       this.getSub();

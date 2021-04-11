@@ -31,8 +31,9 @@
       <td>{{location.propertyValue}}</td>
 
        <td>
-            <router-link :to="{name: 'editlocation', params: { id: location.locationID }}" class="btn btn-success">Edit</router-link>              
-            <button @click.prevent="deletelocation(location.locationID)" class="btn btn-danger">Delete</button>
+           <router-link :to="{name: 'editLocation', params: { id: location.locationID }}" class="btn btn-primary">View</router-link>
+            <router-link :to="{name: 'editLocation', params: { id: location.locationID }}" class="btn btn-success">Edit</router-link>              
+           <!-- <button @click.prevent="deletelocation(location.locationID)" class="btn btn-danger">Delete</button> -->
             
         </td>
     </tr>
