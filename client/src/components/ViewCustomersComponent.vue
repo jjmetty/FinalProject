@@ -31,7 +31,8 @@
 
       <td>{{customer.zip}}</td>
        <td>
-            <router-link :to="{name: 'editCustomer', params: { id: customer.customerID }}" class="btn btn-success">Edit</router-link>              
+            <router-link :to="{name: 'editCustomer', params: { id: customer.customerID }}" class="btn btn-success">Edit</router-link>
+            <router-link :to="{name: 'treeLocation', params: { id: customer.customerID }}" class="btn btn-success">Add</router-link>                
             <button @click.prevent="deleteCustomer(customer.customerID)" class="btn btn-danger">Delete</button>
             <button class= "btn btn-primary">View</button>
             

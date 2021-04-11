@@ -245,6 +245,8 @@ async function getCustomerLocations(){
     } 
 }
 
+
+
 //get one customerLocation by locationID
 async function getCustomerLocation(locationID){
     try{
@@ -888,6 +890,18 @@ async function getsubContractorTypes(){
     } 
 }
 
+//get employeeStatu table
+async function getemployeeStatus(){
+    try{
+        let pool = await sql.connect(config);
+        let employeeStatus = await pool.request().query("SELECT * from employeeStatus");
+        return employeeStatus.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
 
     /**
      * async function getcustomerRelationships(){
@@ -1483,7 +1497,9 @@ module.exports ={
     addSubcontractor  : addSubcontractor,
     updateSubcontractor : updateSubcontractor,
 
-    getsubContractorTypes : getsubContractorTypes
+    getsubContractorTypes : getsubContractorTypes,
+
+    getemployeeStatus  : getemployeeStatus
     
 
     

@@ -48,9 +48,9 @@ const routes = [
   },
 
   {
-    path: '/treeLocation',
+    path: '/treeLocation/:id',
     name: 'treeLocation',
-    component: () => import ('../components/LocationComponent')
+    component: () => import ('../components/NewLocationComponent')
   },
 
   {

@@ -277,6 +277,27 @@ router.route('/subtype').get((req,res) =>{
 
 })
 
+// get employee status
+router.route('/employeeStatus').get((req,res) =>{
+
+    dboperations.getemployeeStatus().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get one customer tree location
+router.route('/treeLocation/:id').get((req,res) =>{
+
+    dboperations.getCustomerLocation(req.params.id).then(result => {
+     //   console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+
 var port = process.env.PORT || 8000;
 app.listen(port);
 console.log('Server is running on port ' + port);

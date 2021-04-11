@@ -42,9 +42,12 @@
                      </select>
                   </div>
 
-                   <div class="form-group col-sm-3 my-1">
+                    <div class="form-group col-sm-3 my-1">
                     <label>Status</label>
-                    <input type="number" class="form-control"  v-model = "employee.statusID"  required >
+                    <select class="form-control" v-model = "employee.statusID" >
+                     <option v-for = "employeeStatus in employeeStatuses" v-bind:key = "employeeStatus.id" v-bind:value = "employeeStatus.statusID"> {{employeeStatus.employeeStatus}}</option>
+                    </select>
+                    
                 </div>
                
 
@@ -81,7 +84,9 @@ import axios from "axios";
 export default {
   data(){
     return{
-      employee: {}
+      employee: {},
+      crews: {},
+      employeeStatuses: {}
 
     }
 
@@ -92,6 +97,23 @@ export default {
   },
 
     created: function() {
+           let apiURL = 'http://localhost:8000/api/crews';
+            axios.get(apiURL).then(res => {
+                this.crews = res.data;
+            }).catch(error => {
+                console.log(error)
+            });
+
+               let apiURL1 = 'http://localhost:8000/api/employeeStatus';
+            axios.get(apiURL1).then(res => {
+                this.employeeStatuses = res.data;
+            }).catch(error => {
+                console.log(error)
+            });
+
+
+
+
       this.getEmployee();
 
 

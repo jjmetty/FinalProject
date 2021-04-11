@@ -44,7 +44,10 @@
 
                    <div class="form-group col-sm-3 my-1">
                     <label>Status</label>
-                    <input type="number" class="form-control"  v-model = "employee.statusID"  required >
+                    <select class="form-control" v-model = "employee.statusID" @click="empStatus">
+                     <option v-for = "employeeStatus in employeeStatuses" v-bind:key = "employeeStatus.id" v-bind:value = "employeeStatus.statusID"> {{employeeStatus.employeeStatus}}</option>
+                    </select>
+                    
                 </div>
                
 
@@ -92,7 +95,8 @@ export default {
          crewID: ''
    
       },
-      crews: []
+      crews: [],
+      employeeStatuses: []
        
     }
 
@@ -108,6 +112,16 @@ export default {
             });
       },
   methods:{
+
+    empStatus(){
+       let apiURL = 'http://localhost:8000/api/employeeStatus';
+            axios.get(apiURL).then(res => {
+                this.employeeStatuses = res.data;
+            }).catch(error => {
+                console.log(error)
+            });
+
+    },
     handleSubmitForm() {
                 let apiURL = 'http://localhost:8000/api/addEmployee';
                 

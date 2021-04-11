@@ -22,10 +22,10 @@
       <td>{{job.locationID}}</td>
       <td>{{job.jobStatusID}}</td>
       <td>{{job.crewID}}</td>
-      <td>{{job.assessmentDate}}</td>
-      <td>{{job.requestDate}}</td>
-      <td>{{job.jobStartDate}}</td>
-      <td>{{job.jobEndDate}}</td>
+      <td>{{getDate(job.assessmentDate)}}</td>
+      <td>{{getDate(job.requestDate)}}</td>
+      <td>{{getDate(job.jobStartDate)}}</td>
+      <td>{{getDate(job.jobEndDate)}}</td>
       <td>{{job.jobTotal}}</td>
 
     
@@ -74,6 +74,15 @@ export default {
     },
 
     methods: {
+
+     getDate(datetime) {
+            let date = 
+                 new Date(datetime).toJSON().slice(0,10).replace(/-/g,'/')
+                    return date
+            },
+
+        
+
   deletejob(id){
                 let apiURL = `http://localhost:8000/api/deletejob/${id}`;
                 let indexOfArrayItem = this.jobs.findIndex(i => i.jobID === id);

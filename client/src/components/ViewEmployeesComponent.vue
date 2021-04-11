@@ -27,7 +27,7 @@
 
        <td>
             <router-link :to="{name: 'editEmployee', params: { id: employee.employeeID }}" class="btn btn-success">Edit</router-link>              
-            <button @click.prevent="deleteEmployee(employee.employeeID)" class="btn btn-danger">Delete</button>
+           <!-- <button @click.prevent="deleteEmployee(employee.employeeID)" class="btn btn-danger">Delete</button> -->
             
             
         </td>
@@ -70,7 +70,8 @@ export default {
     },
     
 //foreign key restratint with table employeePosition
-    methods: {
+   // methods: {
+/** 
   deleteEmployee(id){
                 let apiURL = `http://localhost:8000/api/deleteEmployee/${id}`;
                 let indexOfArrayItem = this.employees.findIndex(i => i.employeeID === id);
@@ -87,7 +88,7 @@ export default {
     }
             
     
-
+*/
     
 }
 </script>

@@ -127,6 +127,14 @@
                      <input type="text"  class = "form-control" v-model = "customer.city" required>
                   </div>
 
+                <div class = "form-group col-md-2 my-1">
+                    <label>State</label>
+                     <select class="form-control" v-model = "customer.stateID">
+                     <option v-for = "state in states" v-bind:key = "state.id" v-bind:value = "state.stateID"> {{state.stateName}}</option>
+                     
+                     </select>
+                  </div>
+
                    
                    
 
@@ -165,7 +173,8 @@ import axios from "axios";
 export default {
   data(){
     return{
-      customer: {}
+      customer: {},
+      states: {}
 
     }
 
@@ -176,6 +185,15 @@ export default {
   },
 
     created: function() {
+        let apiURL = 'http://localhost:8000/api/stateNames';
+            axios.get(apiURL).then(res => {
+                this.states = res.data;
+            }).catch(error => {
+                console.log(error)
+            });
+
+
+
       this.getCustomer();
 
 
