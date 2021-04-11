@@ -1,6 +1,6 @@
 <template>
     <div>   
-        <h2>Employee Table</h2>
+        <h2>Employees</h2>
         <div class="row justify-content-center">
              <div class="col-auto">
     <table class="table table-responsive">
