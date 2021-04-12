@@ -1,14 +1,12 @@
 <template>
     <div>   
-        <h2>Job Table </h2>
+        <h2>Jobs</h2>
         <div class="row justify-content-center">
              <div class="col-auto">
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Location ID</th>
-      <th scope="col">Job Status ID</th>
-      <th scope="col">Crew ID</th>
+    
       <th scope="col">Assesment Date</th>
       <th scope="col">Request Date</th>
       <th scope="col">Start Date</th>
@@ -19,9 +17,7 @@
   </thead>
   <tbody>
     <tr v-for="job in jobs" :key = "job.jobID">
-      <td>{{job.locationID}}</td>
-      <td>{{job.jobStatusID}}</td>
-      <td>{{job.crewID}}</td>
+    
       <td>{{getDate(job.assessmentDate)}}</td>
       <td>{{getDate(job.requestDate)}}</td>
       <td>{{getDate(job.jobStartDate)}}</td>
@@ -30,9 +26,10 @@
 
     
        <td>
+             <button class= "btn btn-primary">View</button>
             <router-link :to="{name: 'editJob', params: { id: job.jobID }}" class="btn btn-success">Edit</router-link>              
-            <button @click.prevent="deletejob(job.jobID)" class="btn btn-danger">Delete</button>
-            <button class= "btn btn-primary">View</button>
+          <!--  <button @click.prevent="deletejob(job.jobID)" class="btn btn-danger">Delete</button>  -->
+          
             
         </td>
     </tr>

@@ -36,7 +36,7 @@ const routes = [
   },
 
   {
-    path: '/newJob',
+    path: '/newJob/:id',
     name: 'newJob',
     component: () => import ('../components/NewJobComponent')
   },
@@ -124,7 +124,32 @@ const routes = [
     path: '/editLocation/:id',
     name: 'editLocation',
     component: () => import ('../components/EditLocationComponent')
+  },
+
+  {
+    path: '/viewCust/:id',
+    name: 'viewCust',
+    component: () => import ('../components/viewCust')
+  },
+
+  {
+    path: '/viewTree/:id',
+    name: 'viewTree',
+    component: () => import ('../components/viewLocation')
+  },
+
+  {
+    path: '/viewEmp/:id',
+    name: 'viewEmp',
+    component: () => import ('../components/viewEmployees')
+  },
+
+  {
+    path: '/viewSub/:id',
+    name: 'viewSub',
+    component: () => import ('../components/viewSub')
   }
+
 
 
 

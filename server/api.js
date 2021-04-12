@@ -222,6 +222,20 @@ router.route('/jobs').get((req,res) =>{
 
 })
 
+//get one job
+
+
+//add a job
+router.route('/addJob').post((req,res) =>{
+
+    let job = {...req.body}
+
+    dboperations.addJob(job).then(result => {
+       // console.log(result);
+        res.status(201).json(result);
+    })
+
+})
 
 //get subcontractor table
 router.route('/subcontractors').get((req,res) =>{
@@ -321,6 +335,25 @@ router.route('/updateLocation/:id').post((req,res) =>{
 
 })
 
+//get job status table
+router.route('/jobStatus').get((req,res) =>{
+
+    dboperations.getjobStatus().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get service list table
+router.route('/serviceList').get((req,res) =>{
+
+    dboperations.getServiceList().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
 
 
 var port = process.env.PORT || 8000;

@@ -11,7 +11,6 @@
       <th scope="col">Cell Phone</th>
       <th scope="col">Language</th>
       <th scope="col">Email</th>
-      <th scope="col">Crew ID</th>
       <th scope="col">Actions</th>
     
     </tr>
@@ -23,9 +22,10 @@
       <td>{{employee.phone}}</td>
       <td>{{employee.employeeLanguage}}</td>
       <td>{{employee.email}}</td>
-      <td>{{employee.crewID}}</td>
+      
 
        <td>
+            <router-link :to="{name: 'viewEmp', params: { id: employee.employeeID }}" class= "btn btn-primary">View</router-link>
             <router-link :to="{name: 'editEmployee', params: { id: employee.employeeID }}" class="btn btn-success">Edit</router-link>              
            <!-- <button @click.prevent="deleteEmployee(employee.employeeID)" class="btn btn-danger">Delete</button> -->
             

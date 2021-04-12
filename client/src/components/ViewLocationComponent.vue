@@ -31,7 +31,8 @@
       <td>{{location.propertyValue}}</td>
 
        <td>
-           <router-link :to="{name: 'editLocation', params: { id: location.locationID }}" class="btn btn-primary">View</router-link>
+           <router-link :to="{name: 'newJob', params: { id: location.locationID }}" class="btn btn-success">New Job</router-link>  
+           <router-link :to="{name: 'viewTree', params: { id: location.locationID }}" class="btn btn-primary">View</router-link>
             <router-link :to="{name: 'editLocation', params: { id: location.locationID }}" class="btn btn-success">Edit</router-link>              
            <!-- <button @click.prevent="deletelocation(location.locationID)" class="btn btn-danger">Delete</button> -->
             
@@ -71,24 +72,25 @@ export default {
             }).catch(error => {
                 console.log(error)
             });
+            
 
     },
     
 //foreign key restratint with table locationPosition
     methods: {
-  deletelocation(id){
-                let apiURL = `http://localhost:8000/api/deletelocation/${id}`;
-                let indexOfArrayItem = this.locations.findIndex(i => i.locationID === id);
 
-                if (window.confirm("Delete location?")) {
-                    axios.delete(apiURL).then(() => {
-                        this.locations.splice(indexOfArrayItem, 0);
-                        window.location.reload();
-                    }).catch(error => {
-                        console.log(error)
-                    });
-                }
-            }
+        getLocation(){
+        let apiURL = `http://localhost:8000/api/treeLocation/${this.$route.params.id}`;
+
+        axios.get(apiURL).then((res) => {
+          let locations = res.data;
+          this.location = locations[0];
+           // this.customer = res.data;
+        })
+        },
+  
+                
+            
     }
             
     
@@ -97,8 +99,12 @@ export default {
 }
 </script>
 
-
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong"> -->
 
 <style scoped>
+
+
 h2 {text-align: center;}
+
+
 </style>

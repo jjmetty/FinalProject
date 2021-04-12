@@ -577,7 +577,7 @@ async function addJob(job){
     try{
         let pool = await sql.connect(config);
         let insertJob = await pool.request()
-            .input ('jobID', sql.Int, job.jobID)
+            
             .input ('locationID', sql.Int, job.locationID)
             .input ('jobStatusID', sql.Int, job.jobStatusID)
             .input ('crewID', sql.Int, job.crewID)
@@ -592,7 +592,7 @@ async function addJob(job){
             .input ('proposalDescription', sql.VarChar, job.proposalDescription)
             .input ('jobInstruction', sql.VarChar, job.jobInstruction)
             .input ('jobComment', sql.VarChar, job.jobComment)
-            .query('INSERT INTO [dbo].[job] (jobID,locationID,jobStatusID,crewID,employeeID,subContractorID,assessmentDate,requestDate,jobStartDate,jobEndDate,jobTotal,bidDescription,proposalDescription,jobInstruction,jobComment) VALUES (@jobID,@locationID,@jobStatusID,@crewID,@employeeID,@subContractorID,@assessmentDate,@requestDate,@jobStartDate,@jobEndDate,@jobTotal,@bidDescription,@proposalDescription,@jobInstruction,@jobComment)');
+            .query('INSERT INTO [dbo].[job] (locationID,jobStatusID,crewID,employeeID,subContractorID,assessmentDate,requestDate,jobStartDate,jobEndDate,jobTotal,bidDescription,proposalDescription,jobInstruction,jobComment) VALUES (@locationID,@jobStatusID,@crewID,@employeeID,@subContractorID,@assessmentDate,@requestDate,@jobStartDate,@jobEndDate,@jobTotal,@bidDescription,@proposalDescription,@jobInstruction,@jobComment)');
            
         return insertJob.recordsets;
 
@@ -895,6 +895,18 @@ async function getemployeeStatus(){
         let pool = await sql.connect(config);
         let employeeStatus = await pool.request().query("SELECT * from employeeStatus");
         return employeeStatus.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+//get jobStatus table
+async function getjobStatus(){
+    try{
+        let pool = await sql.connect(config);
+        let jobStatus = await pool.request().query("SELECT * from jobStatus");
+        return jobStatus.recordsets;
     }
     catch (error){
         console.log(error);
@@ -1498,7 +1510,9 @@ module.exports ={
 
     getsubContractorTypes : getsubContractorTypes,
 
-    getemployeeStatus  : getemployeeStatus
+    getemployeeStatus  : getemployeeStatus,
+
+    getjobStatus  : getjobStatus
     
 
     

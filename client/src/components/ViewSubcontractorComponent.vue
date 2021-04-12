@@ -32,8 +32,9 @@
       
 
        <td>
+            <router-link :to="{name: 'viewSub', params: { id: sub.subContractorID }}" class= "btn btn-primary">View</router-link>
             <router-link :to="{name: 'editSub', params: { id: sub.subContractorID }}" class="btn btn-success">Edit</router-link>              
-            <button @click.prevent="deletesub(sub.subID)" class="btn btn-danger">Delete</button>
+           <!-- <button @click.prevent="deletesub(sub.subID)" class="btn btn-danger">Delete</button> -->
             
         </td>
     </tr>

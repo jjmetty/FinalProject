@@ -6,7 +6,7 @@
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Crew ID</th>
+      
       <th scope="col">Crew Name</th>
       <th scope="col">Actions</th>
    
@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <tr v-for="crew in crews" :key = "crew.crewID">
-      <td>{{crew.crewID}}</td>
+   
       <td>{{crew.crewName}}</td>
  
   

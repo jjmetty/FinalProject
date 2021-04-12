@@ -1,12 +1,22 @@
 <template>
     <div>   
         <h2>Customers</h2>
+        <br>
         <div class="row justify-content-center">
              <div class="col-auto">
+            <form >
+               <div class = "row">
+                 <div class="form-group col-sm-2 my-1">
+                    
+                    <input type="text" class="form-control" placeholder="Search by Name" v-model = "filter">
+                </div>
+               </div>
+            </form>
+            <br>
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
-      <th scope="col">ID</th>
+    
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Cell Phone</th>
@@ -20,7 +30,7 @@
   </thead>
   <tbody>
     <tr v-for="customer in customers" :key = "customer.customerID">
-      <td>{{customer.customerID}}</td>
+  
       <td>{{customer.contactFN}}</td>
       <td>{{customer.contactLN}}</td>
       <td>{{customer.cellPhone}}</td>
@@ -32,7 +42,7 @@
       <td>{{customer.zip}}</td>
        <td>
             <router-link :to="{name: 'treeLocation', params: { id: customer.customerID }}" class="btn btn-success">Add</router-link> 
-            <button class= "btn btn-primary">View</button>
+            <router-link :to="{name: 'viewCust', params: { id: customer.customerID }}" class= "btn btn-primary">View</router-link>
             <router-link :to="{name: 'editCustomer', params: { id: customer.customerID }}" class="btn btn-success">Edit</router-link>
                            
             <!--<button @click.prevent="deleteCustomer(customer.customerID)" class="btn btn-danger">Delete</button> -->
@@ -63,7 +73,9 @@ import axios from "axios";
 export default {
     data(){
         return {
-            customers: []
+            customers: [],
+            filter:''
+            
         }
     },
 
