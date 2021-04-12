@@ -3,7 +3,7 @@ const config = {
     user: 'test',
     password: 'test',
     server:'DESKTOP-B42LRA6.local',
-    database: 'treeStewardDB6',
+    database: 'treeStewardDB7',
     options:{
         trustedConnection: true,
         enableArithAbort: true,

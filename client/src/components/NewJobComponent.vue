@@ -108,24 +108,63 @@
                      <option v-for = "crew in crews" v-bind:key = "crew.id" v-bind:value = "crew.crewID"> {{crew.crewName}}</option>
                      </select>
                   </div>
-
-                  <div class = "form-group col-sm-3 my-1">
-                    <label>Services </label>
-                     <select class="form-control">
-                     <option>Service Selection</option>
-                     </select>
-                  </div>
-                  
-                  <div class="form-group col-sm-2 my-1">
-                    <label># of Services</label>
-                    <input type="number" class="form-control">
-                  </div>
-
-                  <div class="form-group col-sm-2 my-1">
-                    <label>Service Charge</label>
-                    <input type="number" class="form-control">
-                  </div>
                </div>
+
+               <div class = "row">
+                  <div class="form-group col-sm-2 my-1">
+                    <label>Tree Trimming Quanitity</label>
+                    <input type="number" step=0.01 class="form-control" required>
+                  </div>
+
+                  <div class="form-group col-sm-2 my-1">
+                    <label>Tree Trimming Cost</label>
+                    <input type="number" step=0.01 class="form-control" required>
+                  </div>
+
+                  <div class="form-group col-sm-2 my-1">
+                    <label>Stump Grinding Quantity</label>
+                    <input type="number" step=0.01 class="form-control" required>
+                  </div>
+
+                  <div class="form-group col-sm-2 my-1">
+                    <label>Stump Grinding Cost</label>
+                    <input type="number" step=0.01 class="form-control" required>
+                  </div>
+
+                  </div>
+
+
+                 <div class = "row">
+                  <div class="form-group col-sm-2 my-1">
+                    <label>Tree Removal Quantity</label>
+                    <input type="number" step=0.01 class="form-control" required>
+                  </div>
+
+                  <div class="form-group col-sm-2 my-1">
+                    <label>Tree Removaling Cost</label>
+                    <input type="number" step=0.01 class="form-control" required>
+                  </div>
+
+                  <div class="form-group col-sm-2 my-1">
+                    <label>Tree Fertilization Quantity</label>
+                    <input type="number" step=0.01 class="form-control" required>
+                  </div>
+
+                  <div class="form-group col-sm-2 my-1">
+                    <label>Tree Fertilization Cost</label>
+                    <input type="number" step=0.01 class="form-control" required>
+                  </div>
+
+
+                 </div>
+
+
+
+                  
+
+
+               
+
                <div class = "row">
                   <div class="form-group col-sm-2 my-1">
                     <label>Total Job Charge</label>
@@ -211,7 +250,6 @@ export default {
       crews: [],
       jobStatuses: [],
       employees: [],
-      serviceLists: [],
       location: []
 
      
@@ -245,12 +283,7 @@ export default {
                 console.log(error)
             });
 
-              let apiURL3 = 'http://localhost:8000/api/serviceList';
-                axios.get(apiURL3).then(res => {
-                 this.serviceLists = res.data;
-            }).catch(error => {
-                console.log(error)
-            });
+        
 
             this.getLocation();
       },

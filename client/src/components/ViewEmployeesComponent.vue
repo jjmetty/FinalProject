@@ -1,8 +1,19 @@
 <template>
     <div>   
         <h2>Employees</h2>
+        <br>
         <div class="row justify-content-center">
              <div class="col-auto">
+                 <form >
+               <div class = "row">
+                 <div class="form-group col-sm-5 my-1">
+
+                    <label><strong>Search</strong></label>
+                    <input type="text" class="form-control" placeholder="Search by name or last 4" v-model = "search">
+                </div>
+               </div>
+            </form>
+            <br>
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
@@ -16,7 +27,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="employee in employees" :key = "employee.employeeID">
+    <tr v-for="employee in filteredEmployees" :key = "employee.employeeID">
       <td>{{employee.firstName}}</td>
       <td>{{employee.lastName}}</td>
       <td>{{employee.phone}}</td>
@@ -55,7 +66,8 @@ import axios from "axios";
 export default {
     data(){
         return {
-            employees: []
+            employees: [],
+            search: ''
         }
     },
 
@@ -68,6 +80,15 @@ export default {
             });
 
     },
+
+    computed: {
+        filteredEmployees: function(){
+            return this.employees.filter((employee) =>{
+                return employee.firstName.match(this.search) || employee.lastName.match(this.search) || employee.phone.match(this.search);
+        })
+        }
+
+    }
     
 //foreign key restratint with table employeePosition
    // methods: {

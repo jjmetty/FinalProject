@@ -577,12 +577,19 @@ async function addJob(job){
     try{
         let pool = await sql.connect(config);
         let insertJob = await pool.request()
-            
             .input ('locationID', sql.Int, job.locationID)
             .input ('jobStatusID', sql.Int, job.jobStatusID)
             .input ('crewID', sql.Int, job.crewID)
             .input ('employeeID', sql.Int, job.employeeID)
             .input ('subContractorID', sql.Int, job.subContractorID)
+            .input ('treeTrimmingQuantity', sql.Int, job.treeTrimmingQuantity)
+            .input ('treeTrimmingCost', sql.Float, job.treeTrimmingCost)
+            .input ('stumpGrindingQuantity', sql.Int, job.stumpGrindingQuantity)
+            .input ('stumpGrindingCost', sql.Float, job.stumpGrindingCost)
+            .input ('treeRemovalQuantity', sql.Int, job.treeRemovalQuantity)
+            .input ('treeRemovalCost', sql.Float, job.treeRemovalCost)
+            .input ('treeFertilizationQuantity', sql.Int, job.treeFertilizationQuantity)
+            .input ('treeFertilizationCost', sql.Float, job.treeTrimmingCost)
             .input ('assessmentDate', sql.Date, job.assessmentDate)
             .input ('requestDate', sql.Date, job.requestDate)
             .input ('jobStartDate', sql.Date, job.jobStartDate)
@@ -592,7 +599,7 @@ async function addJob(job){
             .input ('proposalDescription', sql.VarChar, job.proposalDescription)
             .input ('jobInstruction', sql.VarChar, job.jobInstruction)
             .input ('jobComment', sql.VarChar, job.jobComment)
-            .query('INSERT INTO [dbo].[job] (locationID,jobStatusID,crewID,employeeID,subContractorID,assessmentDate,requestDate,jobStartDate,jobEndDate,jobTotal,bidDescription,proposalDescription,jobInstruction,jobComment) VALUES (@locationID,@jobStatusID,@crewID,@employeeID,@subContractorID,@assessmentDate,@requestDate,@jobStartDate,@jobEndDate,@jobTotal,@bidDescription,@proposalDescription,@jobInstruction,@jobComment)');
+            .query('INSERT INTO [dbo].[job] (locationID,jobStatusID,crewID,employeeID,subContractorID,treeTrimmingQuantity,treeTrimmingCost,stumpGrindingQuantity,stumpGrindingCost,treeRemovalQuantity,treeRemovalCost,treeFertilizationQuantity,treeFertilizationCost, assessmentDate,requestDate,jobStartDate,jobEndDate,jobTotal,bidDescription,proposalDescription,jobInstruction,jobComment) VALUES (@locationID,@jobStatusID,@crewID,@employeeID,@subContractorID,@treeTrimmingQuantity,@treeTrimmingCost,@stumpGrindingQuantity, @stumpGrindingCost,@treeRemovalQuantity, @treeRemovalCost,@treeFertilizationQuantity,@treeFertilizationCost, @assessmentDate,@requestDate,@jobStartDate,@jobEndDate,@jobTotal,@bidDescription,@proposalDescription,@jobInstruction,@jobComment)');
            
         return insertJob.recordsets;
 

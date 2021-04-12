@@ -3,6 +3,16 @@
         <h2>Tree Locations</h2>
         <div class="row justify-content-center">
              <div class="col-auto">
+                  <form >
+               <div class = "row">
+                 <div class="form-group col-sm-4 my-1">
+
+                    <label><strong>Search</strong></label>
+                    <input type="text" class="form-control" placeholder="Search by street name" v-model = "search">
+                </div>
+               </div>
+            </form>
+            <br>
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
@@ -20,7 +30,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="location in locations" :key = "location.locationID">
+    <tr v-for="location in filteredLocations" :key = "location.locationID">
       <td>{{location.streetNum}}</td>
       <td>{{location.streetName}}</td>
       <td>{{location.suffix}}</td>
@@ -61,7 +71,8 @@ import axios from "axios";
 export default {
     data(){
         return {
-            locations: []
+            locations: [],
+            search: ''
         }
     },
 
@@ -74,6 +85,13 @@ export default {
             });
             
 
+    },
+    computed: {
+        filteredLocations: function(){
+            return this.locations.filter((location) =>{
+                return location.streetName.match(this.search);
+        })
+        }
     },
     
 //foreign key restratint with table locationPosition

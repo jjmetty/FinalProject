@@ -6,9 +6,10 @@
              <div class="col-auto">
             <form >
                <div class = "row">
-                 <div class="form-group col-sm-2 my-1">
-                    
-                    <input type="text" class="form-control" placeholder="Search by Name" v-model = "filter">
+                 <div class="form-group col-sm-3 my-1">
+
+                    <label><strong>Search</strong></label>
+                    <input type="text" class="form-control" placeholder="Search by name, last 4, or street" v-model = "search">
                 </div>
                </div>
             </form>
@@ -29,7 +30,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="customer in customers" :key = "customer.customerID">
+    <tr v-for="customer in filteredNames" :key = "customer.customerID" >
   
       <td>{{customer.contactFN}}</td>
       <td>{{customer.contactLN}}</td>
@@ -41,7 +42,7 @@
 
       <td>{{customer.zip}}</td>
        <td>
-            <router-link :to="{name: 'treeLocation', params: { id: customer.customerID }}" class="btn btn-success">Add</router-link> 
+            <router-link :to="{name: 'treeLocation', params: { id: customer.customerID }}" class="btn btn-success">+ Tree Location</router-link> 
             <router-link :to="{name: 'viewCust', params: { id: customer.customerID }}" class= "btn btn-primary">View</router-link>
             <router-link :to="{name: 'editCustomer', params: { id: customer.customerID }}" class="btn btn-success">Edit</router-link>
                            
@@ -74,7 +75,7 @@ export default {
     data(){
         return {
             customers: [],
-            filter:''
+            search:''
             
         }
     },
@@ -89,6 +90,15 @@ export default {
 
     },
 
+    computed: {
+        filteredNames: function(){
+            return this.customers.filter((customer) =>{
+                return customer.contactFN.match(this.search) || customer.contactLN.match(this.search) || customer.cellPhone.match(this.search) || 
+                customer.streetName.match(this.search);
+            })
+        }
+
+    },
     methods: {
   deleteCustomer(id){
                 let apiURL = `http://localhost:8000/api/deleteCustomer/${id}`;
