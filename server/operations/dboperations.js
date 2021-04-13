@@ -584,7 +584,7 @@ async function addJob(job){
             .input ('subContractorID', sql.Int, job.subContractorID)
             .input ('treeTrimmingQuantity', sql.Int, job.treeTrimmingQuantity)
             .input ('treeTrimmingCost', sql.Float, job.treeTrimmingCost)
-            .input ('stumpGrindingQuantity', sql.Int, job.stumpGrindingQuantity)
+            .input ('stumpGrindingQuanity', sql.Int, job.stumpGrindingQuanity)
             .input ('stumpGrindingCost', sql.Float, job.stumpGrindingCost)
             .input ('treeRemovalQuantity', sql.Int, job.treeRemovalQuantity)
             .input ('treeRemovalCost', sql.Float, job.treeRemovalCost)
@@ -599,7 +599,7 @@ async function addJob(job){
             .input ('proposalDescription', sql.VarChar, job.proposalDescription)
             .input ('jobInstruction', sql.VarChar, job.jobInstruction)
             .input ('jobComment', sql.VarChar, job.jobComment)
-            .query('INSERT INTO [dbo].[job] (locationID,jobStatusID,crewID,employeeID,subContractorID,treeTrimmingQuantity,treeTrimmingCost,stumpGrindingQuantity,stumpGrindingCost,treeRemovalQuantity,treeRemovalCost,treeFertilizationQuantity,treeFertilizationCost, assessmentDate,requestDate,jobStartDate,jobEndDate,jobTotal,bidDescription,proposalDescription,jobInstruction,jobComment) VALUES (@locationID,@jobStatusID,@crewID,@employeeID,@subContractorID,@treeTrimmingQuantity,@treeTrimmingCost,@stumpGrindingQuantity, @stumpGrindingCost,@treeRemovalQuantity, @treeRemovalCost,@treeFertilizationQuantity,@treeFertilizationCost, @assessmentDate,@requestDate,@jobStartDate,@jobEndDate,@jobTotal,@bidDescription,@proposalDescription,@jobInstruction,@jobComment)');
+            .query('INSERT INTO [dbo].[job] (locationID,jobStatusID,crewID,employeeID,subContractorID,treeTrimmingQuantity,treeTrimmingCost,stumpGrindingQuanity,stumpGrindingCost,treeRemovalQuantity,treeRemovalCost,treeFertilizationQuantity,treeFertilizationCost, assessmentDate,requestDate,jobStartDate,jobEndDate,jobTotal,bidDescription,proposalDescription,jobInstruction,jobComment) VALUES (@locationID,@jobStatusID,@crewID,@employeeID,@subContractorID,@treeTrimmingQuantity,@treeTrimmingCost, @stumpGrindingQuanity, @stumpGrindingCost,@treeRemovalQuantity, @treeRemovalCost,@treeFertilizationQuantity,@treeFertilizationCost, @assessmentDate,@requestDate,@jobStartDate,@jobEndDate,@jobTotal,@bidDescription,@proposalDescription,@jobInstruction,@jobComment)');
            
         return insertJob.recordsets;
 
@@ -920,6 +920,67 @@ async function getjobStatus(){
     } 
 }
 
+
+// high job query 
+async function getHighJob(){
+    try{
+        let pool = await sql.connect(config);
+        let HighJob = await pool.request().query("SELECT job.jobTotal AS 'jobcharge', job.jobEndDate AS 'lastJob',   customerLocation.streetNum AS 'StreetNumber',  customerLocation.streetName AS 'StreetName',   customerLocation.suffix AS 'suffix',customerLocation.unitNum AS 'UnitNum',customerLocation.city AS 'city',stateName.stateName AS 'state',customer.zip AS 'ZipCode',customer.contactFN AS 'FirstName',customer.contactLN AS 'LastName', customer.email AS 'email',customer.cellPhone AS 'CellPhone'FROM customer JOIN customerLocation ON customer.customerID = customerLocation.customerID JOIN stateName ON customer.stateID = stateName.stateid JOIN job ON customerLocation.locationID = job.locationID WHERE job.jobTotal >= 750 ORDER BY job.jobTotal DESC, job.jobEndDate DESC;");
+        return HighJob.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+//next anticipated 
+async function getNextAnt(){
+    try{
+        let pool = await sql.connect(config);
+        let nextAnt = await pool.request().query("SELECT  customer.contactFN AS 'firstName', customer.contactLN AS 'lastName', customer.cellPhone AS 'cellPhone', customerLocation.nextAnticipatedDate AS 'nextAnticipated', customerLocation.lotValue AS 'lotValue', job.jobTotal AS 'lastJobcharged', customerLocation.streetNum AS 'StreetNum', customerLocation.streetName AS 'streetName', customerLocation.suffix AS 'suffix', customerLocation.unitNum AS 'unitNum' FROM customer JOIN customerLocation ON customer.customerID = customerLocation.customerID JOIN job ON customerLocation.customerID = job.locationID WHERE nextAnticipatedDate>= GETDATE() AND nextAnticipatedDate <= (GetDate() + 30) ORDER BY nextAnticipatedDate ASC, lotValue DESC;");
+        return nextAnt.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+//tree trimming numbers 
+async function getTrimNums(){
+    try{
+        let pool = await sql.connect(config);
+        let trimNums = await pool.request().query("SELECT SUM(treeTrimmingCost) AS 'treeTrimmingRevenue', SUM(treeTrimmingQuantity) AS 'treeTrimmingServices' FROM job WHERE job.jobEndDate <= GETDATE()  AND job.jobEndDate >= (GetDate() - 365);");
+        return trimNums.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+//tree removal numbers
+async function getRemovalNums(){
+    try{
+        let pool = await sql.connect(config);
+        let removeNums = await pool.request().query("SELECT SUM(treeRemovalCost) AS 'treeRemovalRevenue', SUM(treeRemovalQuantity) 'treeRemovalServices' FROM job WHERE job.jobEndDate <= GETDATE()  AND job.jobEndDate >= (GetDate() - 365);");
+        return removeNums.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+
+//tree fertilization numbers
+async function getFertNums(){
+    try{    
+        let pool = await sql.connect(config);
+        let fertNums = await pool.request().query("SELECT  SUM(treeFertilizationCost) AS 'treeFertilizationRevenue', SUM(treeFertilizationQuantity)'treeFertilizationServices' FROM job WHERE job.jobEndDate <= GETDATE()  AND job.jobEndDate >= (GetDate() - 365);");
+        return fertNums.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
 
     /**
      * async function getcustomerRelationships(){
@@ -1519,8 +1580,19 @@ module.exports ={
 
     getemployeeStatus  : getemployeeStatus,
 
-    getjobStatus  : getjobStatus
+    getjobStatus  : getjobStatus,
     
+    getHighJob  : getHighJob,
+
+    getNextAnt  : getNextAnt,
+
+    getTrimNums  : getTrimNums,
+
+    getRemovalNums  : getRemovalNums,
+
+    getFertNums  : getFertNums
+
+
 
     
 }

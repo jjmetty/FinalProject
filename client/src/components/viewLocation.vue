@@ -91,8 +91,10 @@
 
                      <div class="form-group col-sm-3 my-1">
                      <label >Anticipated Date:</label>
-                     <input type="date" class = "form-control"  v-model = "location.nextAnticipatedDate" disabled>
+                     <input type="text" class = "form-control"  v-model = "location.nextAnticipatedDate" disabled>
                   </div>
+
+                
                </div>
 
 

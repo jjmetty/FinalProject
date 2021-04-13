@@ -148,6 +148,36 @@ const routes = [
     path: '/viewSub/:id',
     name: 'viewSub',
     component: () => import ('../components/viewSub')
+  },
+
+  {
+    path: '/highJobs',
+    name: 'highJobs',
+    component: () => import ('../components/highJobs')
+  },
+
+  {
+    path: '/antDate',
+    name: 'antDate',
+    component: () => import ('../components/antDate')
+  },
+
+  {
+    path: '/trimNums',
+    name: 'trimNums',
+    component: () => import ('../components/trimNums')
+  },
+
+  {
+    path: '/removalNums',
+    name: 'removalNums',
+    component: () => import ('../components/removalNums')
+  },
+
+  {
+    path: '/fertNums',
+    name: 'fertNums',
+    component: () => import ('../components/fertNums')
   }
 
 

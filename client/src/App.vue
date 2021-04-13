@@ -44,6 +44,11 @@
       <li><router-link to="/viewJobs"><i class="fas fa-tree"></i>View Jobs</router-link></li>
       <li><router-link to="/viewLocation"><i class="fas fa-map-marker-alt"></i>View Tree Locations</router-link></li>
       <li><router-link to=""><i class="fas fa-scroll"></i>View Reports</router-link></li>
+      <li><router-link to="/highJobs"><i class="fas fa-scroll"></i>View High $ Jobs</router-link></li>
+      <li><router-link to="/antDate"><i class="fas fa-scroll"></i>Next Anticipated Date</router-link></li>
+      <li><router-link to="/trimNums"><i class="fas fa-scroll"></i>Tree Trimming Numbers</router-link></li>
+      <li><router-link to="/removalNums"><i class="fas fa-scroll"></i>Tree Removal Numbers</router-link></li>
+      <li><router-link to="/fertNums"><i class="fas fa-scroll"></i>Tree Fertilization Numbers</router-link></li>
     </ul>
   </div>
 </div>

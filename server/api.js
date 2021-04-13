@@ -222,6 +222,15 @@ router.route('/jobs').get((req,res) =>{
 
 })
 
+router.route('/highJobs').get((req,res) =>{
+
+    dboperations.getHighJob().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
 //get one job
 
 
@@ -349,6 +358,46 @@ router.route('/jobStatus').get((req,res) =>{
 router.route('/serviceList').get((req,res) =>{
 
     dboperations.getServiceList().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get anticipated date
+router.route('/antDate').get((req,res) =>{
+
+    dboperations.getNextAnt().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get tree trimming numbers
+router.route('/trimNums').get((req,res) =>{
+
+    dboperations.getTrimNums().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get tree removal numbers
+router.route('/removalNums').get((req,res) =>{
+
+    dboperations.getRemovalNums().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get tree fertilizations numbers
+router.route('/fertNums').get((req,res) =>{
+
+    dboperations.getFertNums().then(result => {
       //  console.log(result);
         res.json(result[0]);
     })
