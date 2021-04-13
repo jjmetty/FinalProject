@@ -615,12 +615,20 @@ async function updateJob(jobID, job){
     try {
         let pool = await sql.connect(config);
         let update = await pool.request()
-        .input ('jobID', sql.Int, job.jobID)
+        .input ('jobID', sql.Int, jobID)
         .input ('locationID', sql.Int, job.locationID)
         .input ('jobStatusID', sql.Int, job.jobStatusID)
         .input ('crewID', sql.Int, job.crewID)
         .input ('employeeID', sql.Int, job.employeeID)
         .input ('subContractorID', sql.Int, job.subContractorID)
+        .input ('treeTrimmingQuantity', sql.Int, job.treeTrimmingQuantity)
+        .input ('treeTrimmingCost', sql.Float, job.treeTrimmingCost)
+        .input ('stumpGrindingQuanity', sql.Int, job.stumpGrindingQuanity)
+        .input ('stumpGrindingCost', sql.Float, job.stumpGrindingCost)
+        .input ('treeRemovalQuantity', sql.Int, job.treeRemovalQuantity)
+        .input ('treeRemovalCost', sql.Float, job.treeRemovalCost)
+        .input ('treeFertilizationQuantity', sql.Int, job.treeFertilizationQuantity)
+        .input ('treeFertilizationCost', sql.Float, job.treeTrimmingCost)
         .input ('assessmentDate', sql.Date, job.assessmentDate)
         .input ('requestDate', sql.Date, job.requestDate)
         .input ('jobStartDate', sql.Date, job.jobStartDate)
@@ -630,7 +638,7 @@ async function updateJob(jobID, job){
         .input ('proposalDescription', sql.VarChar, job.proposalDescription)
         .input ('jobInstruction', sql.VarChar, job.jobInstruction)
         .input ('jobComment', sql.VarChar, job.jobComment)
-        .query('UPDATE job SET locationID = @locationID ,jobStatusID = @jobStatus ,crewID = @crewID ,employeeID = @employeeID ,subContractorID = @psubContractorID ,assessmentDate = @assessmentDate ,requestDate = @requestDate ,jobStartDate = @jobStartDate,jobEndDate = @jobEndDate ,jobTotal = @jobTotal, bidDescription = @bidDescription ,proposalDescription = @proposalDescription ,jobInstruction = @jobInstruction ,jobComment = @jobComment WHERE (jobID = @jobID)');
+        .query('UPDATE job SET locationID = @locationID ,jobStatusID = @jobStatusID ,crewID = @crewID ,employeeID = @employeeID ,subContractorID = @subContractorID,treeTrimmingQuantity = @treeTrimmingQuantity, treeTrimmingCost = @treeTrimmingCost,stumpGrindingQuanity = @stumpGrindingQuanity, stumpGrindingCost = @stumpGrindingCost,treeRemovalQuantity = @treeRemovalQuantity, treeRemovalCost = @treeRemovalCost, treeFertilizationQuantity = @treeFertilizationQuantity, treeFertilizationCost = @treeFertilizationCost  ,assessmentDate = @assessmentDate ,requestDate = @requestDate ,jobStartDate = @jobStartDate,jobEndDate = @jobEndDate ,jobTotal = @jobTotal, bidDescription = @bidDescription ,proposalDescription = @proposalDescription ,jobInstruction = @jobInstruction ,jobComment = @jobComment WHERE (jobID = @jobID)');
 
         return update.recordsets;
         
@@ -949,7 +957,7 @@ async function getNextAnt(){
 async function getTrimNums(){
     try{
         let pool = await sql.connect(config);
-        let trimNums = await pool.request().query("SELECT SUM(treeTrimmingCost) AS 'treeTrimmingRevenue', SUM(treeTrimmingQuantity) AS 'treeTrimmingServices' FROM job WHERE job.jobEndDate <= GETDATE()  AND job.jobEndDate >= (GetDate() - 365);");
+        let trimNums = await pool.request().query("SELECT SUM(treeTrimmingCost) AS 'treeTrimmingRevenue', SUM(treeTrimmingQuantity) AS 'treeTrimmingServices' FROM job WHERE (YEAR(jobEndDate) = YEAR(GETDATE()) - 0);");
         return trimNums.recordsets;
     }
     catch (error){
@@ -957,11 +965,24 @@ async function getTrimNums(){
     } 
 }
 
+//stump grinding numbers 
+async function getStumpNums(){
+    try{
+        let pool = await sql.connect(config);
+        let stumpNums = await pool.request().query("SELECT SUM(job.stumpGrindingQuanity) AS 'stumpGrindingQuantity', SUM(job.stumpGrindingCost) AS 'stumpGrindingRevenue' FROM job WHERE (YEAR(jobEndDate) = YEAR(GETDATE()) - 0 );");
+        return stumpNums.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+
 //tree removal numbers
 async function getRemovalNums(){
     try{
         let pool = await sql.connect(config);
-        let removeNums = await pool.request().query("SELECT SUM(treeRemovalCost) AS 'treeRemovalRevenue', SUM(treeRemovalQuantity) 'treeRemovalServices' FROM job WHERE job.jobEndDate <= GETDATE()  AND job.jobEndDate >= (GetDate() - 365);");
+        let removeNums = await pool.request().query("SELECT SUM(treeRemovalCost) AS 'treeRemovalRevenue', SUM(treeRemovalQuantity) 'treeRemovalServices' FROM job WHERE (YEAR(jobEndDate) = YEAR(GETDATE()) - 0 );");
         return removeNums.recordsets;
     }
     catch (error){
@@ -974,7 +995,7 @@ async function getRemovalNums(){
 async function getFertNums(){
     try{    
         let pool = await sql.connect(config);
-        let fertNums = await pool.request().query("SELECT  SUM(treeFertilizationCost) AS 'treeFertilizationRevenue', SUM(treeFertilizationQuantity)'treeFertilizationServices' FROM job WHERE job.jobEndDate <= GETDATE()  AND job.jobEndDate >= (GetDate() - 365);");
+        let fertNums = await pool.request().query("SELECT  SUM(treeFertilizationCost) AS 'treeFertilizationRevenue', SUM(treeFertilizationQuantity)'treeFertilizationServices' FROM job WHERE (YEAR(jobEndDate) = YEAR(GETDATE()) - 0 );");
         return fertNums.recordsets;
     }
     catch (error){
@@ -1590,7 +1611,9 @@ module.exports ={
 
     getRemovalNums  : getRemovalNums,
 
-    getFertNums  : getFertNums
+    getFertNums  : getFertNums,
+
+    getStumpNums  : getStumpNums
 
 
 

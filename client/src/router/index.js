@@ -178,7 +178,26 @@ const routes = [
     path: '/fertNums',
     name: 'fertNums',
     component: () => import ('../components/fertNums')
+  },
+
+  {
+    path: '/editJob/:id',
+    name: 'editJob',
+    component: () => import ('../components/EditJobComponent')
+  },
+
+  {
+    path: '/stumpNums',
+    name: 'stumpNums',
+    component: () => import ('../components/stumpNums')
+  },
+
+  {
+    path: '/viewJob/:id',
+    name: 'viewJob',
+    component: () => import ('../components/viewJob')
   }
+
 
 
 

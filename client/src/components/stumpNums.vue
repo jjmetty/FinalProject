@@ -1,6 +1,6 @@
 <template>
     <div>   
-        <h2>Tree Trimming Numbers</h2>
+        <h2>Stump Grinding Numbers</h2>
         <div class="row justify-content-center">
              <div class="col-auto">
     <table class="table table-responsive">
@@ -13,9 +13,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="trimNum in trimNums" :key = "trimNum.trimNumID">
-      <td>{{trimNum.treeTrimmingRevenue}}</td>
-      <td>{{trimNum.treeTrimmingServices}}</td>
+    <tr v-for="stumpNum in stumpNums" :key = "stumpNum.stumpNumID">
+      <td>{{stumpNum.stumpGrindingQuantity}}</td>
+      <td>{{stumpNum.stumpGrindingRevenue}}</td>
   
  
      
@@ -57,14 +57,14 @@ import axios from "axios";
 export default {
     data(){
         return {
-            trimNums: []
+            stumpNums: []
         }
     },
 
     created() {
-            let apiURL = 'http://localhost:8000/api/trimNums';
+            let apiURL = 'http://localhost:8000/api/stumpNums';
             axios.get(apiURL).then(res => {
-                this.trimNums = res.data;
+                this.stumpNums = res.data;
             }).catch(error => {
                 console.log(error)
             });

@@ -1,6 +1,6 @@
 <template>
     <div>   
-        <h2>Tree Fertilization Numbers</h2>
+        <h2>Tree Removal Numbers</h2>
         <div class="row justify-content-center">
              <div class="col-auto">
     <table class="table table-responsive">

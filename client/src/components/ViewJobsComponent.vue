@@ -3,6 +3,16 @@
         <h2>Jobs</h2>
         <div class="row justify-content-center">
              <div class="col-auto">
+                  <form >
+               <div class = "row">
+                 <div class="form-group col-sm-5 my-1">
+
+                    <label><strong>Search</strong></label>
+                    <input type="text" class="form-control" placeholder="Search by assessment date" v-model = "search">
+                </div>
+               </div>
+            </form>
+            <br>
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
@@ -11,22 +21,25 @@
       <th scope="col">Request Date</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
+      <th scope="col">Job Instructions</th>
       <th scope="col">Total</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr v-for="job in jobs" :key = "job.jobID">
+    <tr v-for="job in filteredJobs" :key = "job.jobID">
     
       <td>{{getDate(job.assessmentDate)}}</td>
       <td>{{getDate(job.requestDate)}}</td>
       <td>{{getDate(job.jobStartDate)}}</td>
       <td>{{getDate(job.jobEndDate)}}</td>
+      <td>{{job.jobInstruction}}</td>
+
       <td>{{job.jobTotal}}</td>
 
     
        <td>
-             <button class= "btn btn-primary">View</button>
+            <router-link :to="{name: 'viewJob', params: { id: job.jobID }}" class= "btn btn-primary">View</router-link>
             <router-link :to="{name: 'editJob', params: { id: job.jobID }}" class="btn btn-success">Edit</router-link>              
           <!--  <button @click.prevent="deletejob(job.jobID)" class="btn btn-danger">Delete</button>  -->
           
@@ -56,7 +69,8 @@ import axios from "axios";
 export default {
     data(){
         return {
-            jobs: []
+            jobs: [],
+            search:''
         }
     },
 
@@ -67,6 +81,14 @@ export default {
             }).catch(error => {
                 console.log(error)
             });
+
+    },
+        computed: {
+        filteredJobs: function(){
+            return this.jobs.filter((job) =>{
+                return job.assessmentDate.match(this.search);
+            })
+        }
 
     },
 

@@ -232,7 +232,14 @@ router.route('/highJobs').get((req,res) =>{
 })
 
 //get one job
+router.route('/job/:id').get((req,res) =>{
 
+    dboperations.getJob(req.params.id).then(result => {
+     //   console.log(result);
+        res.json(result[0]);
+    })
+
+})
 
 //add a job
 router.route('/addJob').post((req,res) =>{
@@ -242,6 +249,18 @@ router.route('/addJob').post((req,res) =>{
     dboperations.addJob(job).then(result => {
        // console.log(result);
         res.status(201).json(result);
+    })
+
+})
+
+//update a job
+router.route('/updateJob/:id').post((req,res) =>{
+
+    let jobID = req.params.id;
+    let job = {...req.body};
+
+    dboperations.updateJob(jobID, job).then(result => {
+        res.json(result);
     })
 
 })
@@ -398,6 +417,16 @@ router.route('/removalNums').get((req,res) =>{
 router.route('/fertNums').get((req,res) =>{
 
     dboperations.getFertNums().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get stump grinding numbers
+router.route('/stumpNums').get((req,res) =>{
+
+    dboperations.getStumpNums().then(result => {
       //  console.log(result);
         res.json(result[0]);
     })

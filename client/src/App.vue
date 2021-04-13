@@ -33,7 +33,9 @@
 <div class = "wrapper bg-light">
   <div class = "sidebar bg-light">
     <ul>
-      <li><router-link to="/newCustomer"><i class="fas fa-plus"></i>New Customer</router-link></li>
+      <li></li>
+      <li></li>
+      <li><router-link to="/newCustomer"><i class="fas fa-plus"></i>New Customer</router-link></li> 
       <li><router-link to="newCrew"><i class="fas fa-plus"></i>New Crew</router-link></li>
       <li><router-link to="/newEmployee"><i class="fas fa-plus"></i>New Employee</router-link></li>
       <li><router-link to="/newSub"><i class="fas fa-plus"></i>New Subcontractor</router-link></li>
@@ -43,12 +45,13 @@
       <li><router-link to="/viewEmployees"><i class="fas fa-users"></i>View Employees</router-link></li>
       <li><router-link to="/viewJobs"><i class="fas fa-tree"></i>View Jobs</router-link></li>
       <li><router-link to="/viewLocation"><i class="fas fa-map-marker-alt"></i>View Tree Locations</router-link></li>
-      <li><router-link to=""><i class="fas fa-scroll"></i>View Reports</router-link></li>
-      <li><router-link to="/highJobs"><i class="fas fa-scroll"></i>View High $ Jobs</router-link></li>
-      <li><router-link to="/antDate"><i class="fas fa-scroll"></i>Next Anticipated Date</router-link></li>
-      <li><router-link to="/trimNums"><i class="fas fa-scroll"></i>Tree Trimming Numbers</router-link></li>
-      <li><router-link to="/removalNums"><i class="fas fa-scroll"></i>Tree Removal Numbers</router-link></li>
-      <li><router-link to="/fertNums"><i class="fas fa-scroll"></i>Tree Fertilization Numbers</router-link></li>
+      <li><router-link to="/highJobs"><i class="fas fa-scroll"></i>View High Value Jobs</router-link></li>
+      <li><router-link to="/antDate"><i class="fas fa-scroll"></i>Next Anticipated Date (Next 30 Days)</router-link></li>
+      <li><router-link to="/trimNums"><i class="fas fa-scroll"></i>Tree Trimming Numbers (Current FY)</router-link></li>
+      <li><router-link to="/stumpNums"><i class="fas fa-scroll"></i>Stump Grinding Numbers (Current FY)</router-link></li>
+      <li><router-link to="/removalNums"><i class="fas fa-scroll"></i>Tree Removal Numbers (Current FY)</router-link></li>
+      <li><router-link to="/fertNums"><i class="fas fa-scroll"></i>Tree Fertilization Numbers (Current FY)</router-link></li>
+      <li><router-link to=""><i class="fas fa-scroll"></i>Jobs Completed By Crews (Last Month)</router-link></li>
     </ul>
   </div>
 </div>
@@ -78,6 +81,7 @@ https://www.youtube.com/watch?v=YesSVqjcDts&t=3s
 
   
 </template>
+
 
 <style>
 
@@ -142,6 +146,14 @@ https://www.youtube.com/watch?v=YesSVqjcDts&t=3s
 
 .sidebar{
    position: fixed;
+}
+
+.sidebar {
+    position: fixed;
+    width: 150px;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
 }
 
 html {
