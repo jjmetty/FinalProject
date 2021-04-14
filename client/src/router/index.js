@@ -196,7 +196,38 @@ const routes = [
     path: '/viewJob/:id',
     name: 'viewJob',
     component: () => import ('../components/viewJob')
+  },
+
+  {
+    path: '/crewSchedules',
+    name: 'crewSchedules',
+    component: () => import ('../components/crewSchedules')
+  },
+
+  {
+    path: '/SASchedules',
+    name: 'SASchedules',
+    component: () => import ('../components/SASchedules')
+  },
+
+  {
+    path: '/outsourcedJobs',
+    name: 'outsourcedJobs',
+    component: () => import ('../components/outsourcedJobs')
+  },
+
+  {
+    path: '/crewJobs',
+    name: 'crewJobs',
+    component: () => import ('../components/crewJobs')
+  },
+
+  {
+    path: '/highLot',
+    name: 'highLot',
+    component: () => import ('../components/highLot')
   }
+
 
 
 

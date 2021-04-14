@@ -6,8 +6,8 @@
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
+      <th scope="col">Quantity</th>
       <th scope="col">Revenue</th>
-      <th scope="col">Services</th>
     
   
     </tr>

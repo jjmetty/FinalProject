@@ -1,39 +1,50 @@
 <template>
     <div>   
-        <h2>High Dollar Jobs</h2>
+        <h2>Outsourced Jobs to Sub Contractors</h2>
         <div class="row justify-content-center">
              <div class="col-auto">
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Job Charge</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Cell</th>
+      <th scope="col">Type</th>
+      <th scope="col">Sub Contractor</th>
+      <th scope="col">Phone</th>
       <th scope="col">Email</th>
-      <th scope="col">Street Num</th>
+      <th scope="col">Street #</th>
       <th scope="col">Street Name</th>
       <th scope="col">Suffix</th>
-      <th scope="col">City</th>
-      <th scope="col">State</th>
-      <th scope="col">Zip</th>
-      <th scope="col">Last Job</th>
+      <th scope="col">Request Date</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">Revenue</th>
+    
+  
     </tr>
   </thead>
   <tbody>
     <tr v-for="job in jobs" :key = "job.jobID">
-      <td>{{job.jobcharge}}</td>
-      <td>{{job.FirstName}}</td>
-      <td>{{job.LastName}}</td>
-      <td>{{job.CellPhone}}</td>
+      <td>{{job.contractorType}}</td>
+      <td>{{job.contractorName}}</td>
+      <td>{{job.phone}}</td>
       <td>{{job.email}}</td>
-      <td>{{job.StreetNumber}}</td>
-      <td>{{job.StreetName}}</td>
+      <td>{{job.streetNum}}</td>
+      <td>{{job.streetName}}</td>
       <td>{{job.suffix}}</td>
-      <td>{{job.city}}</td>
-      <td>{{job.state}}</td>
-      <td>{{job.ZipCode}}</td>
-      <td>{{getDate(job.lastJob)}}</td>
+      <td>{{format_date(job.requestDate)}}</td>
+      <td>{{format_date(job.startDate)}}</td>
+      <td>{{format_date(job.endDate)}}</td>
+      <td>{{job.revenue}}</td>
+    
+      
+      
+      
+
+      
+      
+      
+  
+ 
+     
     
       
       
@@ -67,7 +78,7 @@
 
 <script>
 import axios from "axios";
-
+import moment from "moment";
 
 export default {
     data(){
@@ -77,7 +88,7 @@ export default {
     },
 
     created() {
-            let apiURL = 'http://localhost:8000/api/highJobs';
+            let apiURL = 'http://localhost:8000/api/outsourcedJobs';
             axios.get(apiURL).then(res => {
                 this.jobs = res.data;
             }).catch(error => {
@@ -85,20 +96,17 @@ export default {
             });
 
     },
-
     methods: {
+         format_date(value){
+        if (value){
+            return moment(String(value)).format('YYYY/MM/DD');
+        }
 
-     getDate(datetime) {
-            let date = 
-                 new Date(datetime).toJSON().slice(0,10).replace(/-/g,'/')
-                    return date
-            },
+    },
 
-        
     }
             
     
-
     
 }
 </script>

@@ -6,16 +6,17 @@
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Revenue</th>
       <th scope="col">Services</th>
+      <th scope="col">Revenue</th>
     
   
     </tr>
   </thead>
   <tbody>
     <tr v-for="remNum in remNums" :key = "remNum.remNumID">
-      <td>{{remNum.treeRemovalRevenue}}</td>
+      
       <td>{{remNum.treeRemovalServices}}</td>
+      <td>{{remNum.treeRemovalRevenue}}</td>
   
  
      

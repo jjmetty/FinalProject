@@ -433,6 +433,56 @@ router.route('/stumpNums').get((req,res) =>{
 
 })
 
+//get crew schedules
+router.route('/crewSchedules').get((req,res) =>{
+
+    dboperations.getCrewSchedules().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get SA schedules 
+router.route('/SASchedules').get((req,res) =>{
+
+    dboperations.getSASchedule().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get outsourced jobs
+router.route('/outsourcedJobs').get((req,res) =>{
+
+    dboperations.getOutsourcedJobs().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//get jobs last 30 days crews
+router.route('/crewJobs').get((req,res) =>{
+
+    dboperations.getCrewJobs().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
+//high lot values
+router.route('/highLot').get((req,res) =>{
+
+    dboperations.getHighLots().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
 
 var port = process.env.PORT || 8000;
 app.listen(port);

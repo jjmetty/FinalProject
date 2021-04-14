@@ -51,10 +51,15 @@
       <li><router-link to="/stumpNums"><i class="fas fa-scroll"></i>Stump Grinding Numbers (Current FY)</router-link></li>
       <li><router-link to="/removalNums"><i class="fas fa-scroll"></i>Tree Removal Numbers (Current FY)</router-link></li>
       <li><router-link to="/fertNums"><i class="fas fa-scroll"></i>Tree Fertilization Numbers (Current FY)</router-link></li>
-      <li><router-link to=""><i class="fas fa-scroll"></i>Jobs Completed By Crews (Last Month)</router-link></li>
+      <li><router-link to="/crewJobs"><i class="fas fa-scroll"></i>Jobs Completed By Crews (Last Month)</router-link></li>
+      <li><router-link to="/crewSchedules"><i class="fas fa-scroll"></i>Crew Schedules</router-link></li>
+      <li><router-link to="/SASchedules"><i class="fas fa-scroll"></i>Service Advisor(s) Schedule</router-link></li>
+      <li><router-link to="/outsourcedJobs"><i class="fas fa-scroll"></i>Jobs Outsourced to Sub Contractors </router-link></li>
+      <li><router-link to="/highLot"><i class="fas fa-scroll"></i>Customer High Lot Values </router-link></li>
     </ul>
   </div>
 </div>
+
 <!--
 <footer>
     <div class = "fixed-bottom">

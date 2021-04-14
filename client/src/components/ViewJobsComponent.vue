@@ -8,7 +8,7 @@
                  <div class="form-group col-sm-5 my-1">
 
                     <label><strong>Search</strong></label>
-                    <input type="text" class="form-control" placeholder="Search by assessment date" v-model = "search">
+                    <input type="text" class="form-control" placeholder="Search by street name" v-model = "search">
                 </div>
                </div>
             </form>
@@ -16,25 +16,26 @@
     <table class="table table-responsive">
   <thead class="thead-light">
     <tr>
-    
-      <th scope="col">Assesment Date</th>
+      <th scope="col">Street Num</th>
+      <th scope="col">Street Name</th>
+      <th scope="col">Job Total</th>
+      <th scope="col">Assessment Date</th>
       <th scope="col">Request Date</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
-      <th scope="col">Job Instructions</th>
       <th scope="col">Total</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="job in filteredJobs" :key = "job.jobID">
-    
-      <td>{{getDate(job.assessmentDate)}}</td>
-      <td>{{getDate(job.requestDate)}}</td>
-      <td>{{getDate(job.jobStartDate)}}</td>
-      <td>{{getDate(job.jobEndDate)}}</td>
-      <td>{{job.jobInstruction}}</td>
-
+      <td>{{job.streetNum}}</td>
+      <td>{{job.streetName}}</td>
+      <td>{{job.jobTotal}}</td>
+      <td>{{format_date(job.assessmnetDate)}}</td>
+      <td>{{format_date(job.requestDate)}}</td>
+      <td>{{format_date(job.jobStartDate)}}</td>
+      <td>{{format_date(job.jobEndDate)}}</td>
       <td>{{job.jobTotal}}</td>
 
     
@@ -64,7 +65,7 @@
 
 <script>
 import axios from "axios";
-
+import moment from "moment";
 
 export default {
     data(){
@@ -86,7 +87,7 @@ export default {
         computed: {
         filteredJobs: function(){
             return this.jobs.filter((job) =>{
-                return job.assessmentDate.match(this.search);
+                return job.streetName.match(this.search);
             })
         }
 
@@ -100,7 +101,14 @@ export default {
                     return date
             },
 
-        
+    format_date(value){
+        if (value){
+            return moment(String(value)).format('YYYY/MM/DD');
+        }
+
+    },
+
+
 
   deletejob(id){
                 let apiURL = `http://localhost:8000/api/deletejob/${id}`;

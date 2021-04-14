@@ -548,7 +548,7 @@ async function deleteEmpSkill(empSkillID){
 async function getJobs(){
     try{
         let pool = await sql.connect(config);
-        let jobs = await pool.request().query("SELECT * from job");
+        let jobs = await pool.request().query("SELECT job.jobID, customerLocation.streetNum AS 'streetNum', customerLocation.streetName AS 'streetName' , job.jobTotal AS 'jobTotal', job.jobInstruction  AS 'jobInstruction', job.assessmentDate AS 'assessmnetDate', job.requestDate AS 'requestDate' , job.jobStartDate AS 'jobStartDate' , job.jobEndDate AS 'jobEndDate' from job JOIN customerLocation ON job.locationID = customerLocation.locationID;");
         return jobs.recordsets;
     }
     catch (error){
@@ -1002,6 +1002,67 @@ async function getFertNums(){
         console.log(error);
     } 
 }
+
+// crew schedules
+async function getCrewSchedules(){
+    try{    
+        let pool = await sql.connect(config);
+        let crew = await pool.request().query("SELECT crew.crewName AS 'crewName', job.assessmentDate AS'assessmentDate', job.requestDate AS 'requestDate', job.jobStartDate AS 'startDate', job.jobEndDate 'endDate', job.bidDescription AS 'bidDescription', job.proposalDescription AS 'proposalDescription', job.jobInstruction AS 'jobInstruction' FROM crew JOIN job ON crew.crewID = job.crewID WHERE ((job.assessmentDate >= GETDATE() - 5) AND (job.assessmentDate <= (GETDATE() + 30)));");
+        return crew.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+//service advisor schedule 
+async function getSASchedule(){
+    try{    
+        let pool = await sql.connect(config);
+        let SA = await pool.request().query("SELECT employee.firstName AS 'firstName', employee.lastName AS 'lastName', employee.phone 'phone', job.assessmentDate AS 'assessmentDate', job.requestDate AS 'requestDate', job.jobStartDate AS 'startDate', job.bidDescription AS 'bidDescription', job.proposalDescription AS 'proposalDescription', job.jobInstruction AS 'jobInstruction' FROM employee JOIN job ON employee.employeeID = job.employeeID WHERE ((job.assessmentDate >= (GETdate() - 5)) AND ((job.assessmentDate) <= (GETDATE() + 30))) ORDER BY job.assessmentDate DESC;");
+        return SA.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+//job outsources to sub
+async function getOutsourcedJobs(){
+    try{    
+        let pool = await sql.connect(config);
+        let jobs = await pool.request().query("SELECT subContractorType.subContractorType  AS 'contractorType', subContractor.companyName AS 'contractorName', subContractor.phone AS 'phone#', subContractor.email AS 'email', subContractor.streetNum AS 'streetNum', subContractor.streetName AS 'streetName', subContractor.suffix AS 'suffix', subContractor.unitNum AS 'unitNum', job.requestDate AS 'requestDate',  job.jobStartDate AS 'startDate', job.jobEndDate AS 'endDate', job.jobInstruction AS 'jobInstructions', job.jobTotal AS 'revenue' FROM subContractor JOIN subContractorType ON subContractor.subContractorTypeID = subContractorType.subContractorTypeID JOIN job ON subContractor.subContractorID = job.subContractorID JOIN customerLocation ON job.locationID = customerLocation.locationID WHERE subContractorType.subContractorTypeID = 1;");
+        return jobs.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+//get jobs last 30 day from crews
+async function getCrewJobs(){
+    try{    
+        let pool = await sql.connect(config);
+        let jobs = await pool.request().query("SELECT crew.crewName AS 'crewName', job.requestDate AS 'requestDate',  job.jobStartDate AS 'jobStartDate', job.jobEndDate AS 'jobEndDate', customerLocation.streetNum AS 'streetNumber', customerLocation.streetName AS 'streetName', customerLocation.unitNum AS 'Unit#', customerLocation.city AS 'City', stateName.stateName AS 'State' FROM job JOIN crew ON job.crewID = crew.crewID JOIN customerLocation ON job.locationID = customerLocation.locationID JOIN stateName ON customerLocation.stateID = stateName.stateID WHERE job.jobEndDate <= GETDATE()  AND job.jobEndDate >= (GetDate() - 30)  ORDER BY job.jobEndDate DESC;");
+        return jobs.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
+//get high lot values
+async function getHighLots(){
+    try{    
+        let pool = await sql.connect(config);
+        let lots = await pool.request().query("SELECT customer.contactFN AS 'firstName',  customer.contactLN AS 'lastName', customer.email AS 'email', customer.cellPhone  AS 'cellPhone', customerLocation.lotValue AS 'lotValue', customerLocation.propertyValue AS 'propertyValue', customerLocation.streetNum AS 'streetNum',  customerLocation.streetName AS 'streetName', customerLocation.unitNum AS 'UnitNum', customerLocation.suffix AS 'suffix', customerLocation.city  AS 'city', stateName.stateName AS 'state',customer.zip AS 'ZipCode' FROM customer JOIN customerLocation ON customer.customerID = customerLocation.customerID JOIN stateName ON customer.stateID = stateName.stateid WHERE customerLocation.lotValue >= 75000 ORDER BY lotValue DESC, propertyValue DESC;");
+        return lots.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
+
 
     /**
      * async function getcustomerRelationships(){
@@ -1613,7 +1674,17 @@ module.exports ={
 
     getFertNums  : getFertNums,
 
-    getStumpNums  : getStumpNums
+    getStumpNums  : getStumpNums,
+
+    getCrewSchedules  : getCrewSchedules,
+
+    getSASchedule  : getSASchedule,
+
+    getOutsourcedJobs  : getOutsourcedJobs,
+
+    getCrewJobs  : getCrewJobs,
+
+    getHighLots  : getHighLots
 
 
 
