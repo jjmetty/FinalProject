@@ -483,6 +483,16 @@ router.route('/highLot').get((req,res) =>{
 
 })
 
+//get customer relationships
+router.route('/customerRelationship').get((req,res) =>{
+
+    dboperations.getCustomerRelationship().then(result => {
+      //  console.log(result);
+        res.json(result[0]);
+    })
+
+})
+
 
 var port = process.env.PORT || 8000;
 app.listen(port);

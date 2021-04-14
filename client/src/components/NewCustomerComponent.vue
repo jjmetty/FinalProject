@@ -147,6 +147,14 @@
                     <input type="number" class="form-control" v-model = "customer.zip4">
                   </div>
 
+                  <div class = "form-group col-md-3 my-1">
+                    <label>Relationship</label>
+                     <select class="form-control" v-model = "customer.customerRelationshipID">
+                     <option v-for = "relationship in relationships" v-bind:key = "relationship.id" v-bind:value = "relationship.customerRelationshipID"> {{relationship.customerRelationship}}</option>
+                     
+                     </select>
+                  </div>
+
                    <div class="form-group">
                 <label>Customer Notes</label>
                  <textarea class="form-control"  rows="4" cols = "45" v-model = "customer.customerNote" >
@@ -173,6 +181,7 @@ export default {
   data(){
     return{
       customer:{
+        customerRelationshipID: '',
         companyName: '',
         contactLN: '',
         contactFN: '',
@@ -200,7 +209,8 @@ export default {
         zip4: '',
         customerNote:''
       },
-      states: []
+      states: [],
+      relationships: []
        
     }
 
@@ -214,6 +224,13 @@ export default {
             }).catch(error => {
                 console.log(error)
             });
+
+             let apiURL1 = 'http://localhost:8000/api/customerRelationship';
+            axios.get(apiURL1).then(res => {
+                this.relationships = res.data;
+            }).catch(error => {
+                console.log(error)
+            });
       },
   methods:{
     handleSubmitForm() {
@@ -222,6 +239,7 @@ export default {
                 axios.post(apiURL, this.customer).then(() => {
                   this.$router.push('/viewCustomers')
                   this.customer = {
+                   customerRelationshipID: '',
                    companyName: '',
                    contactLN: '',
                    contactFN: '',

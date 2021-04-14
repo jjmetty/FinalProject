@@ -1063,6 +1063,17 @@ async function getHighLots(){
     } 
 }
 
+//get customer relationship
+async function getCustomerRelationship(){
+    try{    
+        let pool = await sql.connect(config);
+        let relationship = await pool.request().query("SELECT * from customerRelationship");
+        return relationship.recordsets;
+    }
+    catch (error){
+        console.log(error);
+    } 
+}
 
     /**
      * async function getcustomerRelationships(){
@@ -1684,7 +1695,9 @@ module.exports ={
 
     getCrewJobs  : getCrewJobs,
 
-    getHighLots  : getHighLots
+    getHighLots  : getHighLots,
+
+    getCustomerRelationship  : getCustomerRelationship
 
 
 

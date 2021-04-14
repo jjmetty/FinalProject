@@ -39,7 +39,6 @@
       <td>{{customer.streetNum}}</td>
       <td>{{customer.streetName}}</td>
       <td>{{customer.city}}</td>
-
       <td>{{customer.zip}}</td>
        <td>
             <router-link :to="{name: 'treeLocation', params: { id: customer.customerID }}" class="btn btn-success">+ Tree Location</router-link> 
