@@ -18,12 +18,11 @@
     <tr>
       <th scope="col">Street Num</th>
       <th scope="col">Street Name</th>
-      <th scope="col">Job Total</th>
       <th scope="col">Assessment Date</th>
       <th scope="col">Request Date</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
-      <th scope="col">Total</th>
+      <th scope="col">Job Total</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -31,7 +30,6 @@
     <tr v-for="job in filteredJobs" :key = "job.jobID">
       <td>{{job.streetNum}}</td>
       <td>{{job.streetName}}</td>
-      <td>{{job.jobTotal}}</td>
       <td>{{format_date(job.assessmnetDate)}}</td>
       <td>{{format_date(job.requestDate)}}</td>
       <td>{{format_date(job.jobStartDate)}}</td>
